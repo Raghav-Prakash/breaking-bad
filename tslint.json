@@ -44,6 +44,10 @@
       true,
       80
     ],
+    "member-access": [
+      true,
+      "no-public"
+    ],
     "member-ordering": [
       true,
       {
