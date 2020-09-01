@@ -1,20 +1,26 @@
-import { BrowserModule } from '@angular/platform-browser';
+// Modules
 import { NgModule } from '@angular/core';
-import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { AlertModule } from 'ngx-bootstrap/alert';
-
 import { AppRoutingModule } from 'app-routing.module';
+import { BrowserModule } from '@angular/platform-browser';
+import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
+import { TabsModule } from 'ngx-bootstrap/tabs';
+
+// Components
 import { AppComponent } from 'app.component';
+import { TabsetComponent } from 'tabset/tabset.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    TabsetComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    BsDropdownModule.forRoot(),
     AlertModule.forRoot(),
+    BsDropdownModule.forRoot(),
+    TabsModule.forRoot(),
   ],
   providers: [],
   bootstrap: [AppComponent]

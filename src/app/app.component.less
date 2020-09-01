@@ -1,5 +1,8 @@
 .container {
-	.background-cover {
+	&.background-cover {
+		position: relative;
+		z-index: -1;
+
 		img {
 			/* Set rules to fill background */
 			min-height: 100%;
@@ -13,6 +16,6 @@
 			position: fixed;
 			top: 0;
 			left: 0;
-		}
+		}	
 	}
 }
