@@ -2,14 +2,29 @@
   <div class="col-md-2"></div>
   <div class="tabs col-md-8 text-center">
     <ul class="nav nav-pills nav-fill tabs-list">
-      <li class="nav-item">
-        <a class="nav-link active" href="#">Characters</a>
+      <li class="nav-item tab">
+        <a #charactersTab
+          class="nav-link"
+          [class.active]="tabsSelect['Characters']"
+          (click)="onTabsSelect(charactersTab)">
+          Characters
+        </a>
+      </li>
+      <li class="nav-item tab">
+        <a #quotesTab
+          class="nav-link"
+          [class.active]="tabsSelect['Quotes']"
+          (click)="onTabsSelect(quotesTab)">
+          Quotes
+        </a>
       </li>
       <li class="nav-item">
-        <a class="nav-link active" href="#">Quotes</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link active" href="#">Deaths</a>
+        <a #deathsTab
+          class="nav-link"
+          [class.active]="tabsSelect['Deaths']"
+          (click)="onTabsSelect(deathsTab)">
+          Deaths
+        </a>
       </li>
     </ul>
   </div>

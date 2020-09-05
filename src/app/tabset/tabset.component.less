@@ -1,4 +1,24 @@
-.tabs-list {
-  display: flex;
-  justify-content: center;
+.tabs {
+  position: relative;
+  top: 100px;
+
+  .tabs-list {
+    display: flex;
+    justify-content: center;
+
+    .tab {
+      margin-right: 10px;
+    }
+
+    .nav-link {
+      color: white;
+      &.active {
+        background-color: transparent;
+        border-bottom: 1px solid #08573B;
+      }
+      &:hover {
+        cursor: pointer;
+      }
+    }
+  }
 }
