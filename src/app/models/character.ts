@@ -1,3 +1,5 @@
+import * as _ from 'lodash';
+
 /**
  * Holds the structure for a character to be used in our angular app.
  */
@@ -43,4 +45,8 @@ export class Character {
    * Call Saul'.
    */
   series: string;
+
+  constructor(obj?: {[P in keyof Character]?: Character[P]}) {
+    obj && Object.assign(this, _.cloneDeep(obj));
+  }
 }

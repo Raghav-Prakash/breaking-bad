@@ -20,6 +20,8 @@
     "paths": {
       "app/*": ["app/*"],
       "models/*": ["app/models/*"],
+      "services/*": ["app/services/*"],
+      "services/models/*": ["app/services/models/*"],
       "actions/*": ["app/store/actions/*"],
       "effects/*": ["app/store/effects/*"],
       "reducers/*": ["app/store/reducers/*"],

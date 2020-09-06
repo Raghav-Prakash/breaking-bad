@@ -1,16 +1,17 @@
 // Modules
 import { NgModule } from '@angular/core';
-import { AlertModule } from 'ngx-bootstrap/alert';
 import { AppRoutingModule } from 'app/app-routing.module';
 import { BrowserModule } from '@angular/platform-browser';
-import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
-import { TabsModule } from 'ngx-bootstrap/tabs';
+import { HttpClientModule } from '@angular/common/http';
 
 // Components
 import { AppComponent } from 'app/app.component';
 import { TabsetComponent } from 'app/tabset/tabset.component';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { environment } from '../environments/environment';
+
+// Services
+import { CharactersService } from 'app/services/characters.service';
 
 // Actions
 import * as CharacterActions from 'app/store/actions/characters.actions';
@@ -23,15 +24,15 @@ import * as CharacterActions from 'app/store/actions/characters.actions';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    AlertModule.forRoot(),
-    BsDropdownModule.forRoot(),
-    TabsModule.forRoot(),
+    HttpClientModule,
     StoreDevtoolsModule.instrument({
       maxAge: 25,
       logOnly: environment.production
     }),
   ],
-  providers: [],
+  providers: [
+    CharactersService,
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
