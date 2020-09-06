@@ -2,7 +2,6 @@
 {
   "compileOnSave": false,
   "compilerOptions": {
-    "baseUrl": "./",
     "outDir": "./dist/out-tsc",
     "sourceMap": true,
     "declaration": false,
@@ -15,6 +14,19 @@
     "lib": [
       "es2018",
       "dom"
-    ]
+    ],
+
+    "baseUrl": "src",
+    "paths": {
+      "app/*": ["app/*"],
+      "models/*": ["app/models/*"],
+      "actions/*": ["app/store/actions/*"],
+      "effects/*": ["app/store/effects/*"],
+      "reducers/*": ["app/store/reducers/*"],
+      "selectors/*": ["app/store/selectors/*"],
+      "characters/*": ["app/tabset-components/characters/*"],
+      "deaths/*": ["app/tabset-components/deaths/*"],
+      "quotes/*": ["app/tabset-components/quotes/*"],
+    },
   }
 }
