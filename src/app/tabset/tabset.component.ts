@@ -2,7 +2,7 @@ import { Component, ElementRef } from '@angular/core';
 import * as _ from 'lodash';
 
 @Component({
-  selector: 'app-tabset',
+  selector: 'tab-set',
   templateUrl: './tabset.component.html',
   styleUrls: ['./tabset.component.less'],
 })
