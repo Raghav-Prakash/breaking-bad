@@ -1,11 +1,11 @@
 /**
- * Holds the structure for a character to be used in our angular app.
+ * Holds the structure for a character as returned directly by the API.
  */
-export class Character {
+export class ApiCharacter {
   /**
    * Unique Id of the character.
    */
-  id: string;
+  char_id: string;
   /**
    * A character's full name.
    */
@@ -13,15 +13,15 @@ export class Character {
   /**
    * A character's birthday.
    */
-  birthday: Date;
+  birthday: string;
   /**
    * List of character's known occupations.
    */
-  occupations: string[];
+  occupation: string[];
   /**
    * Character's image url.
    */
-  image: string;
+  img: string;
   /**
    * Status of the character, whether alive or not.
    */
@@ -33,14 +33,14 @@ export class Character {
   /**
    * List of seasons that the character appeared in.
    */
-  seasons: string[];
+  appearance: number[];
   /**
    * The actor / actress that portrayed the character.
    */
-  actor: string;
+  portrayed: string;
   /**
    * Series that the character is involved with, like 'Breaking Bad' or 'Better
    * Call Saul'.
    */
-  series: string;
+  category: string;
 }
