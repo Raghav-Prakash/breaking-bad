@@ -1,4 +1,4 @@
-import { Action } from '@ngrx/store';
+import { createAction, props, union } from '@ngrx/store';
 
 import { Character } from 'models/character';
 
@@ -12,34 +12,23 @@ export enum CharacterActionTypes {
 }
 
 /**
- * Action class to load all characters.
+ * Action creators.
  */
-export class LoadCharacters implements Action {
-  readonly type = CharacterActionTypes.LOAD_CHARACTERS;
-}
+export const loadCharacters = createAction(CharacterActionTypes.LOAD_CHARACTERS);
+export const loadCharactersSuccess = createAction(
+  CharacterActionTypes.LOAD_CHARACTERS_SUCCESS,
+  props<{ characters: Character[] }>()
+);
 
 /**
- * Action class that returns the characters loaded as payload when the
- * characters successfully loaded from the API.
+ * Union of all actions created.
  */
-export class LoadCharactersSuccess implements Action {
-  readonly type = CharacterActionTypes.LOAD_CHARACTERS_SUCCESS;
-
-  constructor(payload: Character[]) { }
-}
+const all = union({
+  loadCharacters,
+  loadCharactersSuccess
+});
 
 /**
- * Action class to load all characters.
+ * Export all actions created.
  */
-export class LoadCharactersFailure implements Action {
-  readonly type = CharacterActionTypes.LOAD_CHARACTERS_FAILURE;
-
-  constructor(payload: Error) { }
-}
-
-/**
- * Keep track of all actions associated with characters.
- */
-export type CharacterAction = LoadCharacters |
-  LoadCharactersSuccess |
-  LoadCharactersFailure;
+export type CharacterActions = typeof all;
