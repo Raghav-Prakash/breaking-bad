@@ -25,6 +25,9 @@ import { CharactersEffects } from 'effects/characters.effects';
 import * as CharactersReducers from 'reducers/characters.reducer';
 import { reducers, metaReducers } from 'reducers/index';
 
+// Selectors
+import * as CharactersSelectors from 'selectors/characters.selectors';
+
 @NgModule({
   declarations: [
     AppComponent,

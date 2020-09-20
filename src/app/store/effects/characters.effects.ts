@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Actions, Effect, ofType } from '@ngrx/effects';
+import { Actions, createEffect, Effect, ofType } from '@ngrx/effects';
 import { of } from 'rxjs';
 import { switchMap, map, catchError } from 'rxjs/operators';
 
@@ -13,10 +13,10 @@ import { CharactersService } from 'services/characters.service';
 @Injectable()
 export class CharactersEffects {
 
-  @Effect()
-  loadCharacters = this.actions.pipe(
-    ofType(CharacterActionTypes.LOAD_CHARACTERS),
-    switchMap(() => this.getAll())
+  loadCharacters = createEffect(() => this.actions.pipe(
+      ofType(CharacterActionTypes.LOAD_CHARACTERS),
+      switchMap(() => this.getAll())
+    )
   );
 
   constructor(

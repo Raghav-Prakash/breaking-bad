@@ -5,7 +5,7 @@ import * as CharactersReducer from 'reducers/characters.reducer';
 /**
  * All states for the application as one app state.
  */
-interface AppState {
+export interface AppState {
   characters: CharactersReducer.CharactersState;
 }
 
