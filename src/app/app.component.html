@@ -8,6 +8,9 @@
   </div>
 
   <div class="tab-set">
-    <tab-set></tab-set>
+    <tab-set
+      [tabPath]="tabPath"
+      (selectedTab)="routeToSelectedTab($event)">
+    </tab-set>
   </div>
 </div>

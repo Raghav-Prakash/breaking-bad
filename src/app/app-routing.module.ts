@@ -10,7 +10,7 @@ import { DeathsComponent } from 'app/tabset-components/deaths/deaths.component';
 const routes: Routes = [
   {
     path: 'breaking-bad',
-    component: AppComponent,
+    component: CharactersComponent,
     children: [
       { path: 'characters', component: CharactersComponent },
       { path: 'quotes', component: QuotesComponent },
