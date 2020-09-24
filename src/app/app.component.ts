@@ -13,8 +13,9 @@ export class AppComponent {
   readonly urlRegex: RegExp = /(breaking\-bad)(\/(.+))?/;
   /**
    * Tab from the url to let the tabset component know which tab to highlight.
+   * By default, the 'Characters' tab is selected when the app is loaded.
    */
-  tabPath: string;
+  tabPath = 'Characters';
 
   constructor(
     private router: Router,

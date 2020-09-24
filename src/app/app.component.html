@@ -13,4 +13,20 @@
       (selectedTab)="routeToSelectedTab($event)">
     </tab-set>
   </div>
+
+  <div class="content container-fluid">
+    <div *ngIf="tabPath.toLowerCase() === 'characters'"
+      class="characters">
+      <characters></characters>
+    </div>
+    <div *ngIf="tabPath.toLowerCase() === 'quotes'"
+      class="quotes">
+      <quotes></quotes>
+    </div>
+    <div *ngIf="tabPath.toLowerCase() === 'characters'"
+      class="deaths">
+      <deaths></deaths>
+    </div>
+  </div>
 </div>
+

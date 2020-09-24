@@ -11,6 +11,8 @@ import { EffectsModule } from '@ngrx/effects';
 import { AppComponent } from 'app/app.component';
 import { TabsetComponent } from 'app/tabset/tabset.component';
 import { CharactersComponent } from 'app/tabset-components/characters/characters.component';
+import { DeathsComponent } from 'app/tabset-components/deaths/deaths.component';
+import { QuotesComponent } from 'app/tabset-components/quotes/quotes.component';
 import { environment } from '../environments/environment';
 
 // Services
@@ -34,6 +36,8 @@ import * as CharactersSelectors from 'selectors/characters.selectors';
     AppComponent,
     TabsetComponent,
     CharactersComponent,
+    DeathsComponent,
+    QuotesComponent
   ],
   imports: [
     BrowserModule,
