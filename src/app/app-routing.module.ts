@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
 // Components
-import { AppComponent } from 'app/app.component';
 import { CharactersComponent } from 'app/tabset-components/characters/characters.component';
 import { QuotesComponent } from 'app/tabset-components/quotes/quotes.component';
 import { DeathsComponent } from 'app/tabset-components/deaths/deaths.component';

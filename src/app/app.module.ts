@@ -6,6 +6,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { EffectsModule } from '@ngrx/effects';
+import { SharedModule } from 'app/shared/shared.module';
 
 // Components
 import { AppComponent } from 'app/app.component';
@@ -37,7 +38,7 @@ import * as CharactersSelectors from 'selectors/characters.selectors';
     TabsetComponent,
     CharactersComponent,
     DeathsComponent,
-    QuotesComponent
+    QuotesComponent,
   ],
   imports: [
     BrowserModule,
@@ -56,7 +57,8 @@ import * as CharactersSelectors from 'selectors/characters.selectors';
     }),
     EffectsModule.forRoot([
       CharactersEffects,
-    ])
+    ]),
+    SharedModule
   ],
   providers: [
     CharactersService,
