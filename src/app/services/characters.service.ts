@@ -20,7 +20,7 @@ export const characterFromApi = (character: ApiCharacter): Character => {
     image: character.img,
     status: character.status,
     nickname: character.nickname,
-    seasons: character.appearance.map(season => `${season}`),
+    seasons: character.appearance && character.appearance.map(season => `${season}`),
     actor: character.portrayed,
     series: character.category
   });
