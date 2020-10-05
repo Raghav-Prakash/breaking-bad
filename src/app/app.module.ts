@@ -12,6 +12,7 @@ import { SharedModule } from 'app/shared/shared.module';
 import { AppComponent } from 'app/app.component';
 import { TabsetComponent } from 'app/tabset/tabset.component';
 import { CharactersComponent } from 'app/tabset-components/characters/characters.component';
+import { CharacterComponent } from 'app/tabset-components/characters/character/character.component';
 import { DeathsComponent } from 'app/tabset-components/deaths/deaths.component';
 import { QuotesComponent } from 'app/tabset-components/quotes/quotes.component';
 import { environment } from '../environments/environment';
@@ -37,6 +38,7 @@ import * as CharactersSelectors from 'selectors/characters.selectors';
     AppComponent,
     TabsetComponent,
     CharactersComponent,
+    CharacterComponent,
     DeathsComponent,
     QuotesComponent,
   ],
