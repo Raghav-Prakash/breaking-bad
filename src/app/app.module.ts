@@ -3,9 +3,7 @@ import { NgModule } from '@angular/core';
 import { AppRoutingModule } from 'app/app-routing.module';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
-import { StoreModule } from '@ngrx/store';
-import { StoreDevtoolsModule } from '@ngrx/store-devtools';
-import { EffectsModule } from '@ngrx/effects';
+import { AppStoreModule } from 'app/store/app-store.module';
 import { SharedModule } from 'app/shared/shared.module';
 
 // Components
@@ -43,23 +41,10 @@ import * as CharactersSelectors from 'selectors/characters.selectors';
     QuotesComponent,
   ],
   imports: [
+    AppStoreModule,
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    StoreModule.forRoot(reducers, {
-      metaReducers,
-      runtimeChecks: {
-        strictStateImmutability: true,
-        strictActionImmutability: true,
-      }
-    }),
-    StoreDevtoolsModule.instrument({
-      maxAge: 25,
-      logOnly: environment.production
-    }),
-    EffectsModule.forRoot([
-      CharactersEffects,
-    ]),
     SharedModule
   ],
   providers: [
