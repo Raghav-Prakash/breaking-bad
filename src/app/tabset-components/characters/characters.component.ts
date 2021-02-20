@@ -1,7 +1,8 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { Subscription } from 'rxjs';
+import { Subscription, Observable } from 'rxjs';
 
 import { Character } from 'models/character';
+import { CharactersService } from 'services/characters.service';
 
 @Component({
   selector: 'characters',
@@ -12,7 +13,12 @@ export class CharactersComponent implements OnInit, OnDestroy {
   /**
    * All characters loaded from the store.
    */
-  characters: Character[];
+  characters: Observable<Character[]>;
+  /**
+   * Loading indicator flag from the store, when the data is being loaded to the
+   * store.
+   */
+  loading: Observable<boolean>;
   /**
    * Holds all subscriptions made.
    */

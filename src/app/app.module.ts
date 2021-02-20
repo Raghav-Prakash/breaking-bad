@@ -3,7 +3,6 @@ import { NgModule } from '@angular/core';
 import { AppRoutingModule } from 'app/app-routing.module';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
-import { AppStoreModule } from 'app/store/app-store.module';
 import { SharedModule } from 'app/shared/shared.module';
 
 // Components
@@ -13,23 +12,9 @@ import { CharactersComponent } from 'app/tabset-components/characters/characters
 import { CharacterComponent } from 'app/tabset-components/characters/character/character.component';
 import { DeathsComponent } from 'app/tabset-components/deaths/deaths.component';
 import { QuotesComponent } from 'app/tabset-components/quotes/quotes.component';
-import { environment } from '../environments/environment';
 
 // Services
 import { CharactersService } from 'app/services/characters.service';
-
-// Actions
-import * as CharctersActions from 'actions/characters.actions';
-
-// Effects
-import { CharactersEffects } from 'effects/characters.effects';
-
-// Reducers
-import * as CharactersReducers from 'reducers/characters.reducer';
-import { reducers, metaReducers } from 'reducers/index';
-
-// Selectors
-import * as CharactersSelectors from 'selectors/characters.selectors';
 
 @NgModule({
   declarations: [
@@ -41,7 +26,6 @@ import * as CharactersSelectors from 'selectors/characters.selectors';
     QuotesComponent,
   ],
   imports: [
-    AppStoreModule,
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
