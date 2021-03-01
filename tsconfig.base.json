@@ -20,11 +20,16 @@
     "paths": {
       "app/*": ["app/*"],
       "models/*": ["app/models/*"],
+      "store/*": ["app/store/*"],
       "services/*": ["app/services/*"],
       "services/models/*": ["app/services/models/*"],
       "characters/*": ["app/tabset-components/characters/*"],
       "deaths/*": ["app/tabset-components/deaths/*"],
       "quotes/*": ["app/tabset-components/quotes/*"],
     },
+  },
+  "angularCompilerOptions": {
+    "fullTemplateTypeCheck": true,
+    "strictInjectionParameters": true
   }
 }

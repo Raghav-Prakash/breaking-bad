@@ -24,9 +24,13 @@ export class CharactersComponent implements OnInit, OnDestroy {
    */
   private subscription: Subscription = new Subscription();
 
-  constructor() {}
+  constructor(
+    private charactersService: CharactersService
+  ) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.charactersService.getCharacters();
+  }
 
   ngOnDestroy() {}
 }
