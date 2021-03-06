@@ -31,9 +31,13 @@ export class ApiCharacter {
    */
   nickname: string;
   /**
-   * List of seasons that the character appeared in.
+   * List of seasons that the character appeared in the show 'Breaking Bad'.
    */
   appearance: number[];
+  /**
+   * List of seasons that the character appeared in the show 'Better Caul Saul'.
+   */
+  better_call_saul_appearance: number[];
   /**
    * The actor / actress that portrayed the character.
    */

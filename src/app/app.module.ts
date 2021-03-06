@@ -1,3 +1,6 @@
+// Akita DevTools
+import { AkitaNgDevtools } from '@datorama/akita-ngdevtools';
+
 // Modules
 import { NgModule } from '@angular/core';
 import { AppRoutingModule } from 'app/app-routing.module';
@@ -26,6 +29,7 @@ import { CharactersService } from 'app/services/characters.service';
     QuotesComponent,
   ],
   imports: [
+    AkitaNgDevtools.forRoot(),
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,

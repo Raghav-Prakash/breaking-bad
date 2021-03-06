@@ -4,9 +4,13 @@
   </search-bar>
 </div>
 
+<div *ngIf="isLoading | async">
+  LOADING...
+</div>
+
 <div class="container-fluid cards">
-  <!-- <div *ngFor="let character of characters"
+  <div *ngFor="let character of (characters | async)"
     class="card">
     <character [character]="character"></character>
-  </div> -->
+  </div>
 </div>

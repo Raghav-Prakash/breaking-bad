@@ -20,6 +20,7 @@
     "@angular/platform-browser-dynamic": "~10.0.9",
     "@angular/router": "~10.0.9",
     "@datorama/akita": "^6.0.0",
+    "@datorama/akita-ngdevtools": "^6.0.0",
     "bootstrap": "^4.5.2",
     "font-awesome": "^4.7.0",
     "lodash": "^4.17.20",

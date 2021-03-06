@@ -2,13 +2,15 @@ import { Injectable } from '@angular/core';
 import { Character } from '../../models/character';
 import { EntityStore, EntityState, StoreConfig } from '@datorama/akita';
 
-export interface CharacterState extends EntityState<Character> {
-  character: Character;
+export interface CharacterState extends EntityState<Character[]> {
+  characters: Character[];
+  isLoading: boolean;
 }
 
 export function createInitialState(): CharacterState {
   return {
-    character: null
+    characters: [],
+    isLoading: true
   };
 }
 
@@ -20,7 +22,17 @@ export class CharactersStore extends EntityStore<CharacterState> {
     super(createInitialState());
   }
 
-  loadCharacters(characters: Character[]) {
-    this.set(characters);
+  updateLoadingState(isLoading: boolean) {
+    this.update(state => ({
+      ...state,
+      isLoading,
+    }));
+  }
+
+  updateCharacters(characters: Character[]) {
+    this.update(state => ({
+      ...state,
+      characters,
+    }));
   }
 }

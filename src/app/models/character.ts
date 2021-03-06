@@ -33,9 +33,13 @@ export class Character {
    */
   nickname: string;
   /**
-   * List of seasons that the character appeared in.
+   * List of seasons that the character appeared in the show 'Breaking Bad'..
    */
-  seasons: string[];
+  seasons: number[];
+  /**
+   * List of seasons that the character appeared in the show 'Better Caul Saul'.
+   */
+  betterCallSaulSeasons: number[];
   /**
    * The actor / actress that portrayed the character.
    */

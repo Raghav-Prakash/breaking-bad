@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnChanges } from '@angular/core';
 
 import { Character } from 'models/character';
 
@@ -7,9 +7,13 @@ import { Character } from 'models/character';
   templateUrl: './character.component.html',
   styleUrls: ['./character.component.less'],
 })
-export class CharacterComponent {
+export class CharacterComponent implements OnChanges {
   /**
    * Reference to a character from the characters component to display as a card.
    */
   @Input() character: Character;
+
+  ngOnChanges() {
+    console.log(this.character);
+  }
 }

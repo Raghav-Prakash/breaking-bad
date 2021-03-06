@@ -11,8 +11,18 @@ export class CharactersQuery extends QueryEntity<CharacterState> {
     super(store);
   }
 
-  getCharacters(): Observable<Character> {
-    return this.select(state => state.character);
+  /**
+   * Access our defined property in the state called 'isLoading'.
+   */
+  getLoadingState(): Observable<boolean> {
+    return this.select(state => state.isLoading);
+  }
+
+  /**
+   * Access our defined property in the state called 'characters'.
+   */
+  getCharacters(): Observable<Character[]> {
+    return this.select(state => state.characters);
   }
 }
 
