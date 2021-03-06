@@ -14,6 +14,5 @@ export class CharacterComponent implements OnChanges {
   @Input() character: Character;
 
   ngOnChanges() {
-    console.log(this.character);
   }
 }
