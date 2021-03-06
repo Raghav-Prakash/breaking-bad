@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Character } from '../../models/character';
+import { Character } from 'app/models/character';
 import { EntityStore, EntityState, StoreConfig } from '@datorama/akita';
 
 export interface CharacterState extends EntityState<Character[]> {

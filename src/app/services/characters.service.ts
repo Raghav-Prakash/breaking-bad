@@ -36,10 +36,6 @@ export class CharactersService {
    * Reference to the store.
    */
   private store: CharactersStore;
-  /**
-   * The base url for the API endpoints.
-   */
-  private readonly base = 'https://www.breakingbadapi.com/api';
 
   constructor(http: HttpClient, store: CharactersStore) {
     this.http = http;
