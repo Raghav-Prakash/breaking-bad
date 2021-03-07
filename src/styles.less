@@ -1,1 +1,81 @@
 /* You can add global styles to this file, and also import other style files */
+
+// Styles for the characters, quotes and deaths components.
+.tab-content {
+  display: flex;
+  justify-content: center;
+  position: relative;
+  top: 40px;
+
+  .cards {
+    display: grid;
+    row-gap: 4rem;
+  }
+}
+
+@media (min-width: 2260px) {
+  .cards {
+    grid-template-columns: repeat(3, 1fr);
+    column-gap: 20rem;
+  }
+}
+
+@media (max-width: 2260px) {
+  .cards {
+    grid-template-columns: repeat(3, 1fr);
+    column-gap: 15rem;
+  }
+}
+
+@media (max-width: 2050px) {
+  .cards {
+    grid-template-columns: repeat(3, 1fr);
+    column-gap: 10rem;
+  }
+}
+
+@media (max-width: 1810px) {
+  .cards {
+    grid-template-columns: repeat(3, 1fr);
+    column-gap: 7rem;
+  }
+}
+
+@media (max-width: 1770px) {
+  .cards {
+    grid-template-columns: repeat(2, 1fr);
+    column-gap: 13rem;
+  }
+}
+
+@media (max-width: 1260px) {
+  .cards {
+    column-gap: 9rem;
+  }
+}
+
+@media (max-width: 1160px) {
+  .cards {
+    column-gap: 4rem;
+  }
+}
+
+@media (max-width: 1040px) {
+  .cards {
+    grid-template-columns: 1fr;
+  }
+}
+
+// Styles for each card to display a character, quote or death.
+.card {
+  width: 18rem;
+
+  .image {
+    height: 400px;
+
+    img {
+      height: 400px;
+      object-fit: cover;
+    }
+  }
+}
