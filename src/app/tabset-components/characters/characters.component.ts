@@ -22,6 +22,14 @@ export class CharactersComponent implements OnInit, OnDestroy {
    */
   isLoading: ReplaySubject<boolean> = new ReplaySubject();
   /**
+   * The maximum number of characters that can be loaded per page.
+   */
+  private loadLimit = 6;
+  /**
+   * The current page number.
+   */
+  private pageNumber = 1;
+  /**
    * Holds all subscriptions made.
    */
   private subscription: Subscription = new Subscription();
@@ -37,7 +45,7 @@ export class CharactersComponent implements OnInit, OnDestroy {
         .pipe(
           tap(isLoading => this.isLoading.next(isLoading)),
           filter(isLoading => isLoading),
-          switchMap(__ => this.service.getCharacters()),
+          switchMap(__ => this.service.getCharacters(this.loadLimit, this.pageNumber)),
           switchMap(__ => this.query.getCharacters())
         ).subscribe(characters => {
           this.characters.next(characters);

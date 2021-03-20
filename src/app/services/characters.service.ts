@@ -3,7 +3,7 @@ import { tap } from 'rxjs/operators';
 import { HttpClient } from '@angular/common/http';
 import { CharactersStore } from 'store/characters/characters.store';
 
-import { CHARACTERS_URL } from 'app/constants';
+import { charactersBaseUrl } from 'app/constants';
 import { Character } from 'models/character';
 import { ApiCharacter } from 'services/models/character';
 
@@ -43,10 +43,15 @@ export class CharactersService {
   }
 
   /**
-   * Get the characters from the base URL.
+   * Get the characters from the base URL with a limit to the number of characters
+   * to be retrieved from the API as well.
+   * @param limit The number of characters to be retrieved.
+   * @param offset The starting index from which the limited number of
+   * characters are retrieved.
    */
-  getCharacters() {
-    return this.http.get<ApiCharacter[]>(CHARACTERS_URL).pipe(
+  getCharacters(limit: number, offset: number) {
+    return this.http.get<ApiCharacter[]>(`${charactersBaseUrl}?limit=${limit}&offset=${offset}`)
+    .pipe(
       tap(characters => {
         this.store.updateCharacters(characters
           .map(character => apiCharacterToUiCharacter(character))
