@@ -1,5 +1,8 @@
 /* You can add global styles to this file, and also import other style files */
 
+// Colors
+@breaking-bad-green: #016933;
+
 // Styles for the characters, quotes and deaths components.
 .tab-content {
   display: flex;
@@ -78,4 +81,17 @@
       object-fit: cover;
     }
   }
+}
+
+// Style for the loader when loading the characters, quotes and deaths.
+.loader {
+  position: absolute;
+  left: 50%;
+  top: 5rem;
+}
+
+// Style for the loading icon when loading the characters, quotes and deaths.
+.loading-icon {
+  font-size: 5rem !important;
+  color: @breaking-bad-green;
 }
