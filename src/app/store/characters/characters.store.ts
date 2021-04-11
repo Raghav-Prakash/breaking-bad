@@ -27,6 +27,13 @@ export class CharactersStore extends EntityStore<CharacterState> {
     this.setLoading(loadingState);
   }
 
+  /**
+   * Update the built-in error state in the store.
+   */
+  updateErrorState(error: any) {
+    this.setError(error);
+  }
+
   updateCharacters(characters: Character[]) {
     this.update(state => ({
       ...state,

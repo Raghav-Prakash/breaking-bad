@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
-import { tap } from 'rxjs/operators';
+import { of } from 'rxjs';
+import { tap, catchError } from 'rxjs/operators';
 import { HttpClient } from '@angular/common/http';
 import { CharactersStore } from 'store/characters/characters.store';
 
@@ -59,6 +60,10 @@ export class CharactersService {
           .map(character => apiCharacterToUiCharacter(character))
         );
         this.store.updateLoadingState(false);
+      }),
+      catchError(err => {
+        this.store.updateErrorState(err);
+        return of(err);
       })
     );
   }
