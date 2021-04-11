@@ -50,6 +50,8 @@ export class CharactersService {
    * characters are retrieved.
    */
   getCharacters(limit: number, offset: number) {
+    this.store.updateLoadingState(true);
+
     return this.http.get<ApiCharacter[]>(`${charactersBaseUrl}?limit=${limit}&offset=${offset}`)
     .pipe(
       tap(characters => {

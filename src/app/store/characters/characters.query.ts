@@ -12,10 +12,10 @@ export class CharactersQuery extends QueryEntity<CharacterState> {
   }
 
   /**
-   * Access our defined property in the state called 'isLoading'.
+   * Access the built-in loading state from the store.
    */
   getLoadingState(): Observable<boolean> {
-    return this.select(state => state.isLoading);
+    return this.select(state => state.loading);
   }
 
   /**

@@ -4,13 +4,11 @@ import { EntityStore, EntityState, StoreConfig } from '@datorama/akita';
 
 export interface CharacterState extends EntityState<Character[]> {
   characters: Character[];
-  isLoading: boolean;
 }
 
 export function createInitialState(): CharacterState {
   return {
     characters: [],
-    isLoading: true
   };
 }
 
@@ -22,11 +20,11 @@ export class CharactersStore extends EntityStore<CharacterState> {
     super(createInitialState());
   }
 
-  updateLoadingState(isLoading: boolean) {
-    this.update(state => ({
-      ...state,
-      isLoading,
-    }));
+  /**
+   * Update the built-in loading state in the store.
+   */
+  updateLoadingState(loadingState: boolean) {
+    this.setLoading(loadingState);
   }
 
   updateCharacters(characters: Character[]) {
