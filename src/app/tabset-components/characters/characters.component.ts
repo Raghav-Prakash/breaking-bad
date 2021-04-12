@@ -42,7 +42,6 @@ export class CharactersComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.listenToLoadingState();
-    this.service.setStoreLoadingState(true);
 
     this.subscription.add(
       this.service.setCharacters(this.loadLimit, this.pageNumber)
@@ -59,7 +58,6 @@ export class CharactersComponent implements OnInit, OnDestroy {
           } else {
             console.error(result);
           }
-          this.service.setStoreLoadingState(false);
         })
     );
 
@@ -69,7 +67,12 @@ export class CharactersComponent implements OnInit, OnDestroy {
     this.subscription.unsubscribe();
   }
 
+  /**
+   * Subscribe to the store's loading state.
+   */
   private listenToLoadingState() {
-    this.query.selectLoading().subscribe(isLoading => this.isLoading = isLoading);
+    this.subscription.add(
+      this.query.selectLoading().subscribe(isLoading => this.isLoading = isLoading)
+    );
   }
 }

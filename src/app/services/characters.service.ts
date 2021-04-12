@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
-import { tap, catchError, switchMap } from 'rxjs/operators';
+import { catchError, switchMap } from 'rxjs/operators';
 import { HttpClient } from '@angular/common/http';
 import { CharactersStore } from 'store/characters/characters.store';
 
@@ -51,26 +51,22 @@ export class CharactersService {
    * characters are retrieved.
    */
   setCharacters(limit: number, offset: number): Observable<string> {
+    this.store.setLoading(true);
+
     return this.http.get<ApiCharacter[]>(`${charactersBaseUrl}?limit=${limit}&offset=${offset}`)
       .pipe(
         switchMap(characters => {
           const presentationModel = characters
             .map(character => apiCharacterToUiCharacter(character));
           this.store.updateCharacters(presentationModel);
+          this.store.setLoading(false);
           return of('success');
         }),
         catchError(err => {
-          this.store.updateErrorState(err);
+          this.store.setError(err);
+          this.store.setLoading(false);
           return of('error');
         })
       );
-  }
-
-  /**
-   * Issues a command to update the store's loading state based on the state
-   * that it was provided with.
-   */
-  setStoreLoadingState(isLoading: boolean) {
-    this.store.updateLoadingState(isLoading);
   }
 }
