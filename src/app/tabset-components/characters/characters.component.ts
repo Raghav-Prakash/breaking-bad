@@ -1,6 +1,7 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { Subscription, ReplaySubject } from 'rxjs';
+import { Subscription, ReplaySubject, of } from 'rxjs';
 import { switchMap, filter, tap } from 'rxjs/operators';
+import { isArray } from 'lodash';
 
 import { Character } from 'models/character';
 import { CharactersService } from 'services/characters.service';
@@ -20,7 +21,7 @@ export class CharactersComponent implements OnInit, OnDestroy {
    * Loading indicator flag from the store, when the data is being loaded to the
    * store.
    */
-  isLoading: ReplaySubject<boolean> = new ReplaySubject();
+  isLoading: boolean;
   /**
    * The maximum number of characters that can be loaded per page.
    */
@@ -40,21 +41,35 @@ export class CharactersComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit() {
+    this.listenToLoadingState();
+    this.service.setStoreLoadingState(true);
+
     this.subscription.add(
-      this.query.getLoadingState()
+      this.service.setCharacters(this.loadLimit, this.pageNumber)
         .pipe(
-          tap(isLoading => this.isLoading.next(isLoading)),
-          filter(isLoading => isLoading),
-          switchMap(__ => this.service.getCharacters(this.loadLimit, this.pageNumber)),
-          switchMap(__ => this.query.getCharacters())
-        ).subscribe(characters => {
-          this.characters.next(characters);
-        }
-      )
+          switchMap((state: 'success' | 'error') => {
+            if (state === 'success') {
+              return this.query.getCharacters();
+            }
+            return this.query.selectError();
+          })
+        ).subscribe(result => {
+          if (isArray(result)) {
+            this.characters.next(result);
+          } else {
+            console.error(result);
+          }
+          this.service.setStoreLoadingState(false);
+        })
     );
+
   }
 
   ngOnDestroy() {
     this.subscription.unsubscribe();
+  }
+
+  private listenToLoadingState() {
+    this.query.selectLoading().subscribe(isLoading => this.isLoading = isLoading);
   }
 }
