@@ -5,7 +5,7 @@ import { Observable } from 'rxjs';
 import { Character } from 'app/models/character';
 
 @Injectable({ providedIn: 'root' })
-export class CharactersQuery extends QueryEntity<CharacterState> {
+export class CharactersQuery extends QueryEntity<CharacterState, Character> {
 
   constructor(store: CharactersStore) {
     super(store);
@@ -14,8 +14,8 @@ export class CharactersQuery extends QueryEntity<CharacterState> {
   /**
    * Access our defined property in the state called 'characters'.
    */
-  getCharacters(): Observable<Character[]> {
-    return this.select(state => state.characters);
+  selectCharacters(): Observable<Character[]> {
+    return this.select(state => Object.values(state.entities));
   }
 }
 

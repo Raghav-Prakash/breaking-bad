@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
-import { catchError, switchMap } from 'rxjs/operators';
+import { catchError, map } from 'rxjs/operators';
 import { HttpClient } from '@angular/common/http';
 import { CharactersStore } from 'store/characters/characters.store';
 
@@ -50,22 +50,23 @@ export class CharactersService {
    * @param offset The starting index from which the limited number of
    * characters are retrieved.
    */
-  setCharacters(limit: number, offset: number): Observable<string> {
+  getCharacters(limit: number, offset: number): Observable<Character[]> {
+    const url = `${charactersBaseUrl}?limit=${limit}&offset=${offset}`;
     this.store.setLoading(true);
 
-    return this.http.get<ApiCharacter[]>(`${charactersBaseUrl}?limit=${limit}&offset=${offset}`)
+    return this.http.get<ApiCharacter[]>(url)
       .pipe(
-        switchMap(characters => {
-          const presentationModel = characters
+        map(apiCharacters => {
+          const characters = apiCharacters
             .map(character => apiCharacterToUiCharacter(character));
-          this.store.updateCharacters(presentationModel);
+          this.store.addCharacters(characters);
           this.store.setLoading(false);
-          return of('success');
+          return characters;
         }),
         catchError(err => {
           this.store.setError(err);
           this.store.setLoading(false);
-          return of('error');
+          return of(null);
         })
       );
   }

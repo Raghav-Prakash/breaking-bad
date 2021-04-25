@@ -1,7 +1,5 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { Subscription, ReplaySubject, of } from 'rxjs';
-import { switchMap, filter, tap } from 'rxjs/operators';
-import { isArray } from 'lodash';
+import { Subscription, ReplaySubject } from 'rxjs';
 
 import { Character } from 'models/character';
 import { CharactersService } from 'services/characters.service';
@@ -42,25 +40,9 @@ export class CharactersComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.listenToLoadingState();
-
-    this.subscription.add(
-      this.service.setCharacters(this.loadLimit, this.pageNumber)
-        .pipe(
-          switchMap((state: 'success' | 'error') => {
-            if (state === 'success') {
-              return this.query.getCharacters();
-            }
-            return this.query.selectError();
-          })
-        ).subscribe(result => {
-          if (isArray(result)) {
-            this.characters.next(result);
-          } else {
-            console.error(result);
-          }
-        })
-    );
-
+    this.listenToCharactersSuccessState();
+    this.listenToCharactersErrorState();
+    this.service.getCharacters(this.loadLimit, (this.pageNumber - 1) * this.loadLimit).subscribe();
   }
 
   ngOnDestroy() {
@@ -73,6 +55,26 @@ export class CharactersComponent implements OnInit, OnDestroy {
   private listenToLoadingState() {
     this.subscription.add(
       this.query.selectLoading().subscribe(isLoading => this.isLoading = isLoading)
+    );
+  }
+
+  /**
+   * If the API call to get the characters were successful, query the characters
+   * from the store to display in the view.
+   */
+  private listenToCharactersSuccessState() {
+    this.subscription.add(
+      this.query.selectCharacters().subscribe(characters => this.characters.next(characters))
+    );
+  }
+
+  /**
+   * If the API call to get the characters had an error, query the error in the
+   * store.
+   */
+  private listenToCharactersErrorState() {
+    this.subscription.add(
+      this.query.selectError().subscribe(error => error && console.error(error))
     );
   }
 }
