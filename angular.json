@@ -35,7 +35,12 @@
             "scripts": [],
             "allowedCommonJsDependencies": [
               "lodash"
-            ]
+            ],
+            "stylePreprocessorOptions": {
+              "includePaths": [
+                "src/styles"
+              ]
+            }
           },
           "configurations": {
             "production": {
