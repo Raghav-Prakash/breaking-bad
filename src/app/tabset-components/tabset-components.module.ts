@@ -4,7 +4,6 @@ import { AppRoutingModule } from 'app/app-routing.module';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
 import { ModalModule } from 'ngx-bootstrap/modal';
-import { SharedModule } from 'app/shared/shared.module';
 
 // Custom modules
 import { CharactersModule } from 'app/tabset-components/characters/characters.module';
@@ -22,13 +21,11 @@ import { QuotesModule } from 'app/tabset-components/quotes/quotes.module';
     CharactersModule,
     DeathsModule,
     QuotesModule,
-    SharedModule
   ],
   exports: [
     CharactersModule,
     DeathsModule,
     QuotesModule,
-    SharedModule
   ],
 })
 export class TabsetComponentsModule { }
