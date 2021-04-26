@@ -8,6 +8,7 @@ import { SharedModule } from 'app/shared/shared.module';
 // Components
 import { CharactersComponent } from 'app/tabset-components/characters/characters.component';
 import { CharacterComponent } from 'app/tabset-components/characters/character/character.component';
+import { CharacterDetailsComponent } from 'app/tabset-components/characters/character/details/character-details.component';
 
 // Services
 import { CharactersService } from 'app/services/characters.service';
@@ -16,6 +17,7 @@ import { CharactersService } from 'app/services/characters.service';
   declarations: [
     CharactersComponent,
     CharacterComponent,
+    CharacterDetailsComponent
   ],
   imports: [
     BrowserModule,
@@ -26,6 +28,7 @@ import { CharactersService } from 'app/services/characters.service';
   exports: [
     CharactersComponent,
     CharacterComponent,
+    CharacterDetailsComponent
   ],
   providers: [
     CharactersService,

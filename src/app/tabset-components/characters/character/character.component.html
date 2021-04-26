@@ -15,4 +15,8 @@
 
 <div class="card-details"
   *ngIf="isInDetailsView">
+  <character-details
+    [character]="character"
+    (closeDetails)="toggleDetailsDisplay(false)">
+  </character-details>
 </div>

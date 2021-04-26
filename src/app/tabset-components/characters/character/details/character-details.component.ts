@@ -9,16 +9,18 @@ import {
 } from '@angular/core';
 import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 
+import { Character } from 'app/models/character';
+
 @Component({
-  selector: 'entity-details',
-  templateUrl: './entity-details.component.html',
-  styleUrls: ['./entity-details.component.less']
+  selector: 'character-details',
+  templateUrl: './character-details.component.html',
+  styleUrls: ['./character-details.component.less']
 })
-export class EntityDetailsComponent implements OnChanges {
+export class CharacterDetailsComponent implements OnChanges {
   /**
-   * The entity whose details will be presented in the view.
+   * The character whose details will be presented in the view.
    */
-  @Input() entity: any;
+  @Input() character: Character;
   /**
    * Reference to the details template.
    */
