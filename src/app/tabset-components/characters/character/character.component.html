@@ -5,6 +5,16 @@
   <div class="card-body description">
     <h5 class="card-title character-name">{{character.name}}</h5>
     <p class="card-text actor-name">Played by {{character.actor}}</p>
-    <button class="btn btn-info text-nowrap">View Details</button>
+    <button class="btn btn-success text-nowrap"
+      [class.expand]="isInDetailsView"
+      (click)="setDetailsFlag()">
+      View Details
+    </button>
   </div>
+</div>
+
+<div class="card-details"
+  *ngIf="isInDetailsView">
+  <entity-details [entity]="character">
+  </entity-details>
 </div>

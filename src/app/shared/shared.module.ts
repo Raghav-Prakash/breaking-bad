@@ -5,17 +5,20 @@ import { HttpClientModule } from '@angular/common/http';
 
 // Components
 import { SearchBarComponent } from 'app/shared/search-bar/search-bar.component';
+import { EntityDetailsComponent } from 'app/shared/entity-details/entity-details.component';
 
 @NgModule({
   declarations: [
-    SearchBarComponent
+    SearchBarComponent,
+    EntityDetailsComponent
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
   ],
   exports: [
-    SearchBarComponent
+    SearchBarComponent,
+    EntityDetailsComponent
   ]
 })
 export class SharedModule { }
