@@ -18,10 +18,11 @@ export class CharacterComponent {
   isInDetailsView = false;
 
   /**
-   * Set the flag indicating that the details of a character can being viewed to
-   * true.
+   * Toggle the flag indicating that the details of a character can being viewed
+   * based on the value provided.
+   * @param isDisplay Whether the details are to be displayed.
    */
-  setDetailsFlag() {
-    this.isInDetailsView = true;
+  toggleDetailsDisplay(isDisplay: boolean) {
+    this.isInDetailsView = isDisplay;
   }
 }
