@@ -6,6 +6,7 @@ import { NgModule } from '@angular/core';
 import { AppRoutingModule } from 'app/app-routing.module';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
+import { ModalModule } from 'ngx-bootstrap/modal';
 import { SharedModule } from 'app/shared/shared.module';
 
 // Components
@@ -30,6 +31,7 @@ import { CharactersService } from 'app/services/characters.service';
   ],
   imports: [
     AkitaNgDevtools.forRoot(),
+    ModalModule.forRoot(),
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
