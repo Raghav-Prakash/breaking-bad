@@ -6,37 +6,29 @@ import { HttpClientModule } from '@angular/common/http';
 import { ModalModule } from 'ngx-bootstrap/modal';
 import { SharedModule } from 'app/shared/shared.module';
 
-// Components
-import { CharactersComponent } from 'app/tabset-components/characters/characters.component';
-import { CharacterComponent } from 'app/tabset-components/characters/character/character.component';
-import { DeathsComponent } from 'app/tabset-components/deaths/deaths.component';
-import { QuotesComponent } from 'app/tabset-components/quotes/quotes.component';
-
-// Services
-import { CharactersService } from 'app/services/characters.service';
+// Custom modules
+import { CharactersModule } from 'app/tabset-components/characters/characters.module';
+import { DeathsModule } from 'app/tabset-components/deaths/deaths.module';
+import { QuotesModule } from 'app/tabset-components/quotes/quotes.module';
 
 @NgModule({
   declarations: [
-    CharactersComponent,
-    CharacterComponent,
-    DeathsComponent,
-    QuotesComponent,
   ],
   imports: [
     AppRoutingModule,
     BrowserModule,
     ModalModule.forRoot(),
     HttpClientModule,
+    CharactersModule,
+    DeathsModule,
+    QuotesModule,
     SharedModule
   ],
   exports: [
-    CharactersComponent,
-    CharacterComponent,
-    DeathsComponent,
-    QuotesComponent,
-  ],
-  providers: [
-    CharactersService,
+    CharactersModule,
+    DeathsModule,
+    QuotesModule,
+    SharedModule
   ],
 })
 export class TabsetComponentsModule { }
