@@ -1,11 +1,92 @@
 <ng-template #details>
-  <div class="modal-header">
-    <h4 class="modal-title pull-left">Modal</h4>
-    <button type="button" class="close pull-right" aria-label="Close" (click)="onCloseDetails()">
+  <div class="modal-header header">
+    <h4 class="modal-title pull-left">{{character.name}}</h4>
+    <button type="button"
+      class="close pull-right close-btn"
+      aria-label="Close"
+      (click)="onCloseDetails()">
       <span aria-hidden="true">&times;</span>
     </button>
   </div>
-  <div class="modal-body">
-    This is a modal.
+
+  <div class="modal-body content">
+    <div class="profile-pic">
+      <img src="{{character.image}}" class="card-img-top" alt="'No image found'">
+    </div>
+    <div class="info-container">
+      <div class="actor">
+        <label>Actor: </label>
+        <span class="info">{{character.actor}}</span>
+      </div>
+      <div class="birthday"
+        *ngIf="character.birthday">
+        <label>Born: </label>
+        <span class="info">{{character.birthday | date}}</span>
+      </div>
+      <div class="nickname"
+        *ngIf="character.nickname">
+        <label>Character nickname: </label>
+        <span class="info">{{character.nickname}}</span>
+      </div>
+      <div class="occupations"
+        *ngIf="character.occupations && character.occupations.length">
+        <label>Occupations: </label>
+        <span class="info">
+          <ul>
+            <li *ngFor="let occupation of character.occupations">
+              {{occupation}}
+            </li>
+          </ul>
+        </span>
+      </div>
+      <div class="status">
+        <label>Status: </label>
+        <span class="info">{{character.status}}</span>
+      </div>
+      <div class="seasons">
+        <ng-content *ngTemplateOutlet="seasonAppearances; context: { seasons: character.seasons}">
+        </ng-content>
+      </div>
+      <div class="series"
+        *ngIf="character.betterCallSaulSeasons.length">
+        <span>This character has also appeared in the TV show "Better Caul Saul"</span>
+      </div>
+    </div>
   </div>
+</ng-template>
+
+<ng-template #seasonAppearances
+  let-seasons="seasons">
+  <div [ngSwitch]="seasons.length">
+    <div *ngSwitchCase="5">
+      <span>This character has appeared in all 5 seasons.</span>
+    </div>
+    <div *ngSwitchCase="4">
+      <span>This character has appeared in all seasons except season {{seasonAbsences[0]}}.</span>
+    </div>
+    <div *ngSwitchCase="3">
+      <ng-content *ngTemplateOutlet="twoOrThreeSeasons; context: { seasons: seasons }"></ng-content>
+    </div>
+    <div *ngSwitchCase="2">
+      <ng-content *ngTemplateOutlet="twoOrThreeSeasons; context: { seasons: seasons }"></ng-content>
+    </div>
+    <div *ngSwitchCase="1">
+      <span>This character has only appeared in season {{seasons[0]}}.</span>
+    </div>
+  </div>
+</ng-template>
+
+<ng-template #twoOrThreeSeasons
+  let-seasons="seasons">
+  <span>
+    This character has appeared in seasons 
+    <span *ngFor="let season of seasons; let idx = index">
+      <span>{{season}}</span>
+      <span *ngIf="idx < seasons.length - 1">
+        <span *ngIf="idx < (seasons.length - 2)">, </span>
+        <span *ngIf="idx === (seasons.length - 2)"> and </span>
+      </span>
+      <span *ngIf="idx === (seasons.length - 1)">.</span>
+    </span>
+  </span>
 </ng-template>

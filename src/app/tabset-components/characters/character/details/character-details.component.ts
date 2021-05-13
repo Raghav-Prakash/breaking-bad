@@ -34,6 +34,12 @@ export class CharacterDetailsComponent implements OnChanges {
    * Reference to the modal.
    */
   modalRef: BsModalRef;
+  /**
+   * Return the season number or numbers that the character was not involved in.
+   */
+  get seasonAbsences(): number[] {
+    return [1, 2, 3, 4, 5].filter(season => !(this.character.seasons.includes(season)));
+  }
 
   constructor(
     private modalService: BsModalService
