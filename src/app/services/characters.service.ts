@@ -46,12 +46,9 @@ export class CharactersService {
   /**
    * Set the characters in the store. If there was an error in the API, set the
    * error state in the store.
-   * @param limit The number of characters to be retrieved.
-   * @param offset The starting index from which the limited number of
-   * characters are retrieved.
    */
-  getCharacters(limit: number, offset: number): Observable<Character[]> {
-    const url = `${charactersBaseUrl}?limit=${limit}&offset=${offset}`;
+  getCharacters(): Observable<Character[]> {
+    const url = `${charactersBaseUrl}`;
     this.store.setLoading(true);
 
     return this.http.get<ApiCharacter[]>(url)

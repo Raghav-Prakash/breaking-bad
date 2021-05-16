@@ -21,10 +21,6 @@ export class CharactersComponent implements OnInit, OnDestroy {
    */
   isLoading: boolean;
   /**
-   * The maximum number of characters that can be loaded per page.
-   */
-  private loadLimit = 6;
-  /**
    * The current page number.
    */
   private pageNumber = 1;
@@ -42,7 +38,7 @@ export class CharactersComponent implements OnInit, OnDestroy {
     this.listenToLoadingState();
     this.listenToCharactersSuccessState();
     this.listenToCharactersErrorState();
-    this.service.getCharacters(this.loadLimit, (this.pageNumber - 1) * this.loadLimit).subscribe();
+    this.service.getCharacters().subscribe();
   }
 
   ngOnDestroy() {
