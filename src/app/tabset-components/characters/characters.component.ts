@@ -35,14 +35,20 @@ export class CharactersComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit() {
-    this.listenToLoadingState();
-    this.listenToCharactersSuccessState();
-    this.listenToCharactersErrorState();
-    this.service.getCharacters().subscribe();
+    this.listenToStates();
   }
 
   ngOnDestroy() {
     this.subscription.unsubscribe();
+  }
+
+  /**
+   * Wrapper method to listen to all interested states in the store.
+   */
+  private listenToStates() {
+    this.listenToLoadingState();
+    this.listenToCharactersSuccessState();
+    this.listenToCharactersErrorState();
   }
 
   /**

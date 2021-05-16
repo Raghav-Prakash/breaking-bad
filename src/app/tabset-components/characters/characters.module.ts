@@ -1,5 +1,5 @@
 // Modules
-import { NgModule } from '@angular/core';
+import { NgModule, APP_INITIALIZER } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
 import { ModalModule } from 'ngx-bootstrap/modal';
@@ -12,6 +12,11 @@ import { CharactersSearchComponent } from 'app/tabset-components/characters/sear
 
 // Services
 import { CharactersService } from 'app/services/characters.service';
+
+// Set the store with the characters from the API.
+export function charactersServiceFactory(charactersService: CharactersService): () => Promise<any> {
+  return () => charactersService.getCharacters();
+}
 
 @NgModule({
   declarations: [
@@ -33,6 +38,13 @@ import { CharactersService } from 'app/services/characters.service';
   ],
   providers: [
     CharactersService,
+    {
+      // Provider for APP_INITIALIZER
+      provide: APP_INITIALIZER,
+      useFactory: charactersServiceFactory,
+      deps: [CharactersService],
+      multi: true
+    }
   ],
 })
 export class CharactersModule { }
