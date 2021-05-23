@@ -23,7 +23,7 @@ export class CharactersComponent implements OnInit, OnDestroy {
   /**
    * The current page number.
    */
-  private pageNumber = 1;
+  pageNumber = 1;
   /**
    * Holds all subscriptions made.
    */
@@ -46,6 +46,14 @@ export class CharactersComponent implements OnInit, OnDestroy {
 
   ngOnDestroy() {
     this.subscription.unsubscribe();
+  }
+
+  /**
+   * On changing a page, we display the page's characters as a slice from the
+   * store.
+   */
+  onPageChange(event: any) {
+    console.log(event);
   }
 
   /**
