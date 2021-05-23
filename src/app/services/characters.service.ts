@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { of } from 'rxjs';
+import { Observable, of } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
 import { HttpClient } from '@angular/common/http';
 import { CharactersStore } from 'store/characters/characters.store';
@@ -47,8 +47,9 @@ export class CharactersService {
    * Set the characters in the store. If there was an error in the API, set the
    * error state in the store.
    */
-  getCharacters(): Promise<any> {
+  getCharacters(): Observable<Character[]> {
     const url = `${charactersBaseUrl}`;
+    this.store.setLoading(true);
 
     return this.http.get<ApiCharacter[]>(url)
       .pipe(
@@ -56,12 +57,14 @@ export class CharactersService {
           const characters = apiCharacters
             .map(character => apiCharacterToUiCharacter(character));
           this.store.addCharacters(characters);
+          this.store.setLoading(false);
           return characters;
         }),
         catchError(err => {
           this.store.setError(err);
+          this.store.setLoading(false);
           return of(null);
         })
-      ).toPromise();
+      );
   }
 }

@@ -1,5 +1,5 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { Subscription, ReplaySubject } from 'rxjs';
+import { Subscription } from 'rxjs';
 
 import { Character } from 'models/character';
 import { CharactersService } from 'services/characters.service';
@@ -14,7 +14,7 @@ export class CharactersComponent implements OnInit, OnDestroy {
   /**
    * All characters loaded from the store.
    */
-  characters: ReplaySubject<Character[]> = new ReplaySubject();
+  characters: Character[] = [];
   /**
    * Loading indicator flag from the store, when the data is being loaded to the
    * store.
@@ -35,20 +35,17 @@ export class CharactersComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit() {
-    this.listenToStates();
+    this.listenToLoadingState();
+    this.listenToCharactersSuccessState();
+    this.listenToCharactersErrorState();
+
+    if (!this.characters.length) {
+      this.service.getCharacters().subscribe();
+    }
   }
 
   ngOnDestroy() {
     this.subscription.unsubscribe();
-  }
-
-  /**
-   * Wrapper method to listen to all interested states in the store.
-   */
-  private listenToStates() {
-    this.listenToLoadingState();
-    this.listenToCharactersSuccessState();
-    this.listenToCharactersErrorState();
   }
 
   /**
@@ -61,12 +58,11 @@ export class CharactersComponent implements OnInit, OnDestroy {
   }
 
   /**
-   * If the API call to get the characters were successful, query the characters
-   * from the store to display in the view.
+   * Query the characters from the store to display in the view.
    */
   private listenToCharactersSuccessState() {
     this.subscription.add(
-      this.query.selectCharacters().subscribe(characters => this.characters.next(characters))
+      this.query.selectCharacters().subscribe(characters => this.characters = [...characters])
     );
   }
 
