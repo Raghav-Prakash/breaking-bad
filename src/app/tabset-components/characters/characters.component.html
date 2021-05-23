@@ -14,7 +14,8 @@
   </div>
 </div>
 
-<div class="pagination">
+<div class="pagination"
+  *ngIf="characters.length">
   <pagination [boundaryLinks]="true"
     [totalItems]="characters.length"
     firstText="&laquo;"

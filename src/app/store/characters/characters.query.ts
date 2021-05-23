@@ -12,10 +12,19 @@ export class CharactersQuery extends QueryEntity<CharacterState, Character> {
   }
 
   /**
-   * Access our defined property in the state called 'characters'.
+   * Return all characters from the store who have appeared in the show
+   * "Breaking Bad".
    */
-  selectCharacters(): Observable<Character[]> {
-    return this.select(state => Object.values(state.entities));
+  selectBreakingBadCharacters(): Observable<Character[]> {
+    return this.select(state => state.breakingBad);
+  }
+
+  /**
+   * Return all characters from the store who have only appeared in the show
+   * "Better Caul Saul".
+   */
+  selectBetterCaulSaulCharacters(): Observable<Character[]> {
+    return this.select(state => state.betterCaulSaul);
   }
 }
 

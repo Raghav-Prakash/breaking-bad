@@ -2,22 +2,44 @@ import { Injectable } from '@angular/core';
 import { Character } from 'app/models/character';
 import { EntityStore, EntityState, StoreConfig } from '@datorama/akita';
 
-export interface CharacterState extends EntityState<Character> {}
+export interface CharacterState extends EntityState<Character[]> {
+  breakingBad: Character[];
+  betterCaulSaul: Character[];
+}
+
+export function createInitialState(): CharacterState {
+  return {
+    breakingBad: [],
+    betterCaulSaul: []
+  };
+}
 
 @Injectable({ providedIn: 'root' })
 @StoreConfig({ name: 'characters', idKey: 'name' })
-export class CharactersStore extends EntityStore<CharacterState, Character, string> {
+export class CharactersStore extends EntityStore<CharacterState, Character[], string> {
 
   constructor() {
-    super();
+    super(createInitialState());
   }
 
   /**
-   * Add the provided characters as entities to the "characters" store.
-   * @param characters The list of characters from the API converted to a
-   * presentation model.
+   * Update the state with the provided "Breaking Bad" characters.
+   * @param characters Characters who have appeared in the show "Breaking Bad".
    */
-  addCharacters(characters: Character[]) {
-    this.add(characters);
+  updateBreakingBadCharacters(characters: Character[]) {
+    this.update(state => ({
+      breakingBad: [...characters]
+    }));
+  }
+
+  /**
+   * Update the state with the provided "Better Caul Saul" characters.
+   * @param characters Characters who have only appeared in the show "Better Caul
+   * Saul"
+   */
+  updateBetterCaulSaulCharacters(characters: Character[]) {
+    this.update(state => ({
+      betterCaulSaul: [...characters]
+    }));
   }
 }

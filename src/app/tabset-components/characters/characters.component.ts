@@ -70,7 +70,7 @@ export class CharactersComponent implements OnInit, OnDestroy {
    */
   private listenToCharactersSuccessState() {
     this.subscription.add(
-      this.query.selectCharacters().subscribe(characters => this.characters = [...characters])
+      this.query.selectBreakingBadCharacters().subscribe(characters => this.characters = [...characters])
     );
   }
 
