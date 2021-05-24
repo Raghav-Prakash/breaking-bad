@@ -17,12 +17,12 @@
 <div class="pagination"
   *ngIf="characters.length">
   <pagination [boundaryLinks]="true"
-    [totalItems]="characters.length"
+    [totalItems]="totalCharactersBreakingBad"
     firstText="&laquo;"
     previousText="&lsaquo;"
     nextText="&rsaquo;"
     lastText="&raquo;"
-    [itemsPerPage]="6"
+    [itemsPerPage]="maxCharactersPerPage"
     (pageChanged)="onPageChange($event)"> 
   </pagination>
 </div>

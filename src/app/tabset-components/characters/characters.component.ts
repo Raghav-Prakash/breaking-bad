@@ -25,6 +25,14 @@ export class CharactersComponent implements OnInit, OnDestroy {
    */
   pageNumber = 1;
   /**
+   * The total number of characters who have appeared in the show "Breaking Bad".
+   */
+  totalCharactersBreakingBad: number;
+  /**
+   * The limit to the number of characters a user can see in any given page.
+   */
+  readonly maxCharactersPerPage = 6;
+  /**
    * Holds all subscriptions made.
    */
   private subscription: Subscription = new Subscription();
@@ -35,8 +43,9 @@ export class CharactersComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit() {
-    this.listenToLoadingState();
-    this.listenToCharactersSuccessState();
+    this.queryLoadingState();
+    this.queryBreakingBadCharactersForPage(this.pageNumber, this.maxCharactersPerPage);
+    this.queryBreakingBadCharacterCount();
     this.listenToCharactersErrorState();
 
     if (!this.characters.length) {
@@ -51,26 +60,42 @@ export class CharactersComponent implements OnInit, OnDestroy {
   /**
    * On changing a page, we display the page's characters as a slice from the
    * store.
+   * @param pageChangeEvent The object emitted upon changing a page.
+   * - "page" is the new page number the user has navigated to.
+   * - "itemsPerPage" is the limit on the number of characters a page can have
+   * for display.
    */
-  onPageChange(event: any) {
-    console.log(event);
+  onPageChange(pageChangeEvent: { page: number, itemsPerPage: number }) {
+    this.pageNumber = pageChangeEvent.page;
+    this.queryBreakingBadCharactersForPage(this.pageNumber, this.maxCharactersPerPage);
   }
 
   /**
    * Subscribe to the store's loading state.
    */
-  private listenToLoadingState() {
+  private queryLoadingState() {
     this.subscription.add(
       this.query.selectLoading().subscribe(isLoading => this.isLoading = isLoading)
     );
   }
 
   /**
-   * Query the characters from the store to display in the view.
+   * Get the number of "Breaking Bad" characters from the store.
    */
-  private listenToCharactersSuccessState() {
+  private queryBreakingBadCharacterCount() {
     this.subscription.add(
-      this.query.selectBreakingBadCharacters().subscribe(characters => this.characters = [...characters])
+      this.query.getBreakingBadCharacterCount().subscribe(count => this.totalCharactersBreakingBad = count)
+    );
+  }
+
+  /**
+   * Query a slice of the "Breaking Bad" characters from the store to display in
+   * the provided page for "Breaking Bad" characters.
+   */
+  private queryBreakingBadCharactersForPage(page: number, maxCharactersPerPage: number) {
+    this.subscription.add(
+      this.query.selectBreakingBadCharacters(page, maxCharactersPerPage)
+        .subscribe(characters => this.characters = [...characters])
     );
   }
 
