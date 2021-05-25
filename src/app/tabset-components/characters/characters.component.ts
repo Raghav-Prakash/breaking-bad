@@ -1,5 +1,7 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { Subscription } from 'rxjs';
+import { Subscription, BehaviorSubject } from 'rxjs';
+import { switchMap } from 'rxjs/operators';
+import { combineQueries } from '@datorama/akita';
 
 import { Character } from 'models/character';
 import { CharactersService } from 'services/characters.service';
@@ -23,7 +25,7 @@ export class CharactersComponent implements OnInit, OnDestroy {
   /**
    * The current page number.
    */
-  pageNumber = 1;
+  private pageNumber: BehaviorSubject<number> = new BehaviorSubject(1);
   /**
    * The total number of characters who have appeared in the show "Breaking Bad".
    */
@@ -43,10 +45,8 @@ export class CharactersComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit() {
-    this.queryLoadingState();
-    this.queryBreakingBadCharactersForPage(this.pageNumber, this.maxCharactersPerPage);
-    this.queryBreakingBadCharacterCount();
-    this.listenToCharactersErrorState();
+    this.subscription.add(this.queryLoadingAndErrorStates());
+    this.subscription.add(this.queryCharactersAndCountForPage(this.maxCharactersPerPage));
 
     if (!this.characters.length) {
       this.service.getCharacters().subscribe();
@@ -58,54 +58,48 @@ export class CharactersComponent implements OnInit, OnDestroy {
   }
 
   /**
-   * On changing a page, we display the page's characters as a slice from the
-   * store.
+   * On changing a page, we update the current page number we're at, and trigger
+   * the queries to the store to display the page's characters.
    * @param pageChangeEvent The object emitted upon changing a page.
    * - "page" is the new page number the user has navigated to.
    * - "itemsPerPage" is the limit on the number of characters a page can have
    * for display.
    */
   onPageChange(pageChangeEvent: { page: number, itemsPerPage: number }) {
-    this.pageNumber = pageChangeEvent.page;
-    this.queryBreakingBadCharactersForPage(this.pageNumber, this.maxCharactersPerPage);
+    this.pageNumber.next(pageChangeEvent.page);
   }
 
   /**
-   * Subscribe to the store's loading state.
+   * Combine queries to the store's loading and error states and update their
+   * respective UI flags and variables.
    */
-  private queryLoadingState() {
-    this.subscription.add(
-      this.query.selectLoading().subscribe(isLoading => this.isLoading = isLoading)
-    );
+  private queryLoadingAndErrorStates(): Subscription {
+    return combineQueries([
+      this.query.selectLoading(),
+      this.query.selectError()
+    ]).subscribe(([isLoading, error]) => {
+      this.isLoading = isLoading;
+      error && console.error(error);
+    });
   }
 
   /**
-   * Get the number of "Breaking Bad" characters from the store.
+   * Combine the queries to the character count and the characters per page
+   * for the show "Breaking Bad".
+   * @param page The page number the user is currently viewing.
+   * @param maxCharactersPerPage The limit on the number of characters a page
+   * can have for display.
    */
-  private queryBreakingBadCharacterCount() {
-    this.subscription.add(
-      this.query.getBreakingBadCharacterCount().subscribe(count => this.totalCharactersBreakingBad = count)
-    );
-  }
-
-  /**
-   * Query a slice of the "Breaking Bad" characters from the store to display in
-   * the provided page for "Breaking Bad" characters.
-   */
-  private queryBreakingBadCharactersForPage(page: number, maxCharactersPerPage: number) {
-    this.subscription.add(
-      this.query.selectBreakingBadCharacters(page, maxCharactersPerPage)
-        .subscribe(characters => this.characters = [...characters])
-    );
-  }
-
-  /**
-   * If the API call to get the characters had an error, query the error in the
-   * store.
-   */
-  private listenToCharactersErrorState() {
-    this.subscription.add(
-      this.query.selectError().subscribe(error => error && console.error(error))
-    );
+  private queryCharactersAndCountForPage(maxCharactersPerPage: number): Subscription {
+    return this.pageNumber
+    .pipe(
+      switchMap(page => combineQueries([
+        this.query.getBreakingBadCharacterCount(),
+        this.query.selectBreakingBadCharacters(page, maxCharactersPerPage)
+      ]))
+    ).subscribe(([count, characters]) => {
+      this.totalCharactersBreakingBad = count;
+      this.characters = [...characters];
+    });
   }
 }
