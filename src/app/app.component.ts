@@ -29,7 +29,7 @@ export class AppComponent {
           )
         ) {
           const matches = event.url.match(this.urlRegex);
-          if ( matches && matches.length === 4 ) {
+          if ( matches && matches.filter(match => !!match).length === 4 ) {
             if (
               !this.tabPath ||
               this.tabPath.toLowerCase() !== matches[3].toLowerCase()
