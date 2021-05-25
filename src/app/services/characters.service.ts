@@ -2,7 +2,9 @@ import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
 import { HttpClient } from '@angular/common/http';
+import { withTransaction } from '@datorama/akita';
 import { CharactersStore } from 'store/characters/characters.store';
+import { isArray } from 'lodash';
 
 import { charactersBaseUrl } from 'app/constants';
 import { Character } from 'models/character';
@@ -53,20 +55,40 @@ export class CharactersService {
 
     return this.http.get<ApiCharacter[]>(url)
       .pipe(
-        map(apiCharacters => {
-          const characters = apiCharacters
-            .map(character => apiCharacterToUiCharacter(character));
-          this.updateStoreWithBreakingBadCharacters(characters);
-          this.updateStoreWithBetterCaulSaulCharacters(characters);
-          this.store.setLoading(false);
-          return characters;
-        }),
-        catchError(err => {
-          this.store.setError(err);
-          this.store.setLoading(false);
-          return of(null);
+        map(apiCharacters => apiCharacters
+          .map(character => apiCharacterToUiCharacter(character))
+        ),
+        catchError(err => of(err)),
+        withTransaction(charactersOrError => {
+          if (isArray(charactersOrError)) {
+            this.onUpdateCharacterStates(charactersOrError);
+          } else {
+            this.onUpdateErrorStates(charactersOrError);
+          }
         })
       );
+  }
+
+  /**
+   * If the API call to load the characters was successful, update the
+   * states in the store for the characters who have appeared in both the shows
+   * as well as the loading state.
+   * @param characters The characters in both the shows combined.
+   */
+  private onUpdateCharacterStates(characters: Character[]) {
+    this.updateStoreWithBreakingBadCharacters(characters);
+    this.updateStoreWithBetterCaulSaulCharacters(characters);
+    this.store.setLoading(false);
+  }
+
+  /**
+   * If the API call to load the characters was erroneous, update the error
+   * states in the store as well as the loading state.
+   * @param error The API error.
+   */
+  private onUpdateErrorStates(error: string) {
+    this.store.setError(error);
+    this.store.setLoading(false);
   }
 
   /**
