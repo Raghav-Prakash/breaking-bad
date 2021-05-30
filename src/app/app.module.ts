@@ -13,6 +13,7 @@ import { TabsetComponentsModule } from 'app/tabset-components/tabset-components.
 // Components
 import { AppComponent } from 'app/app.component';
 import { TabsetComponent } from 'app/tabset/tabset.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { TabsetComponent } from 'app/tabset/tabset.component';
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    TabsetComponentsModule
+    TabsetComponentsModule,
+    BrowserAnimationsModule
   ],
   bootstrap: [AppComponent]
 })
