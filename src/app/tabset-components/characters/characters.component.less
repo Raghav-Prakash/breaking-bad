@@ -1,32 +1,4 @@
-@import "colors";
-
-// mixins
-
-.transparent-styles {
-  background-color: transparent;
-  border: 1px solid transparent;
-}
-
-// end of mixins
-
-:host::ng-deep {
-  .page-link {
-    color: @white;
-    font-size: 1.2rem;
-    margin-right: 5px;
-  }
-
-  .page-link, .page-item.disabled .page-link {
-    .transparent-styles();
-  }
-
-  .page-item.active .page-link {
-    background-color: @breaking-bad-green;
-    border-color: @breaking-bad-green;
-  }
-}
-
-.pagination {
+.navigate-pages {
   display: flex;
   justify-content: center;
   position: relative;

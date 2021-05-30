@@ -14,15 +14,11 @@
   </div>
 </div>
 
-<div class="pagination"
+<div class="navigate-pages"
   *ngIf="characters.length">
-  <pagination [boundaryLinks]="true"
-    [totalItems]="totalCharactersBreakingBad"
-    firstText="&laquo;"
-    previousText="&lsaquo;"
-    nextText="&rsaquo;"
-    lastText="&raquo;"
-    [itemsPerPage]="maxCharactersPerPage"
-    (pageChanged)="onPageChange($event)"> 
-  </pagination>
+  <navigate-pages
+    [totalItemsCount]="totalCharactersBreakingBad"
+    [itemsPerPageCount]="maxCharactersPerPage"
+    (pageChange)="onPageChange($event)">
+  </navigate-pages>
 </div>

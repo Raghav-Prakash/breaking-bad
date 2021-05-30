@@ -4,6 +4,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
 import { ModalModule } from 'ngx-bootstrap/modal';
 import { PaginationModule } from 'ngx-bootstrap/pagination';
+import { SharedModule } from 'app/shared/shared.module';
 
 // Components
 import { CharactersComponent } from 'app/tabset-components/characters/characters.component';
@@ -26,6 +27,7 @@ import { CharactersService } from 'app/services/characters.service';
     ModalModule.forRoot(),
     PaginationModule.forRoot(),
     HttpClientModule,
+    SharedModule,
   ],
   exports: [
     CharactersComponent,
