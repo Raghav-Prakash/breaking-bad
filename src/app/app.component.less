@@ -1,3 +1,14 @@
+/* Angular Material Sidenav styles */
+:host::ng-deep {
+	.mat-drawer-container {
+		display: contents;
+	}
+
+	.mat-drawer.mat-drawer-side {
+		width: 7%;
+	}
+}
+
 /* Media query to check if browser is in dark mode. */
 @media (prefers-color-scheme: dark) {
 	.background-cover {
@@ -28,14 +39,17 @@
 }
 
 .app {
+	padding-left: 0;
+	padding-right: 0;
+
+	.sidenav-content {
+		width: 15%;
+		float: left;
+	}
 
 	.logo {
-		/* Center the logo div inside the app div */
-		width: 50%;
-		margin: 0 auto;
-
-		/* Center its content, the logo image, inside its div */
-		display: flex;
+		width: 70%;
+		display: inline-flex;
 		justify-content: center;
 	}
 
