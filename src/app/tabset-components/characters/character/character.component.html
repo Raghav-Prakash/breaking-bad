@@ -3,8 +3,9 @@
     <img src="{{character.image}}" class="card-img-top" alt="'No image found'">
   </div>
   <div class="card-body description">
-    <h5 class="card-title character-name">{{character.name}}</h5>
-    <p class="card-text actor-name">Played by {{character.actor}}</p>
+    <div class="name">
+      <h4 class="card-title">{{character.name}}</h4>
+    </div>
     <button class="btn btn-success text-nowrap"
       [class.expand]="isInDetailsView"
       (click)="toggleDetailsDisplay(true)">
