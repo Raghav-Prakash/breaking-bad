@@ -1,3 +1,11 @@
+@import "colors";
+
+:host::ng-deep {
+	.mat-drawer-content, .mat-drawer-transition .mat-drawer-content {
+		margin-left: 0 !important;
+	}
+}
+
 /* Angular Material Sidenav styles */
 :host::ng-deep {
 	.mat-drawer-container {
@@ -43,13 +51,25 @@
 	padding-right: 0;
 
 	.sidenav-content {
-		width: 15%;
 		float: left;
+
+		.example-sidenav {
+			position: fixed;
+			top: 65px;
+			height: 75%;
+		}
+
+		.hamburger-menu-icon {
+			color: @white;
+			position: fixed;
+			left: 10px;
+			font-size: 2rem;
+			cursor: pointer;
+		}
 	}
 
 	.logo {
-		width: 70%;
-		display: inline-flex;
+		display: flex;
 		justify-content: center;
 	}
 

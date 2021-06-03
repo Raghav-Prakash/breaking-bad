@@ -5,19 +5,23 @@
 <div class="app container-fluid">
   <div class="sidenav-logo-container">
     <div class="sidenav-content">
-      <mat-drawer-container class="example-container" autosize>
-        <mat-drawer #drawer class="example-sidenav" mode="side">
+      <mat-sidenav-container class="example-container">
+        <mat-sidenav #sidenav
+          mode="side"
+          class="example-sidenav">
           <p>Breaking Bad</p>
           <p>Better Caul Saul</p>
-        </mat-drawer>
+        </mat-sidenav>
       
-        <div class="example-sidenav-content">
-          <button type="button" mat-button (click)="drawer.toggle()">
-            Toggle sidenav
-          </button>
-        </div>
-      
-      </mat-drawer-container>  
+        <mat-sidenav-content>
+          <p class="menu-section">
+            <a class="hamburger-menu-icon"
+              (click)="sidenav.toggle()">
+              <i class="fa fa-bars"></i>
+            </a>
+          </p>
+        </mat-sidenav-content>
+      </mat-sidenav-container>
     </div>
     <div class="logo">
       <img src="assets/img/logo.png">
