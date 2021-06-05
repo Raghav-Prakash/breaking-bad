@@ -9,6 +9,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { MatSidenavModule } from '@angular/material/sidenav';
 
 // Custom modules
+import { SharedModule } from 'app/shared/shared.module';
 import { TabsetComponentsModule } from 'app/tabset-components/tabset-components.module';
 
 // Components
@@ -29,6 +30,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     TabsetComponentsModule,
     BrowserAnimationsModule,
     MatSidenavModule,
+    SharedModule
   ],
   bootstrap: [AppComponent]
 })

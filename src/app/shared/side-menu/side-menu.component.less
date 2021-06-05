@@ -1,0 +1,36 @@
+@import "colors";
+
+:host::ng-deep {
+	.mat-drawer-content, .mat-drawer-transition .mat-drawer-content {
+		margin-left: 0 !important;
+	}
+}
+
+/* Angular Material Sidenav styles */
+:host::ng-deep {
+	.mat-drawer-container {
+		display: contents;
+	}
+
+	.mat-drawer.mat-drawer-side {
+		width: 7%;
+	}
+}
+
+.sidenav-content {
+  float: left;
+
+  .example-sidenav {
+    position: fixed;
+    top: 45px;
+    height: 75%;
+  }
+
+  .hamburger-menu-icon {
+    color: @white;
+    position: fixed;
+    left: 10px;
+    font-size: 2rem;
+    cursor: pointer;
+  }
+}
