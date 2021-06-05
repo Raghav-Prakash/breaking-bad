@@ -1,20 +1,48 @@
 @import "colors";
 
+/* 
+  Styles the side-menu drawer.
+*/
 :host::ng-deep {
 	.mat-drawer-content, .mat-drawer-transition .mat-drawer-content {
 		margin-left: 0 !important;
 	}
-}
 
-/* Angular Material Sidenav styles */
-:host::ng-deep {
-	.mat-drawer-container {
+  .mat-drawer-container {
 		display: contents;
 	}
 
 	.mat-drawer.mat-drawer-side {
-		width: 7%;
+		width: 10%;
 	}
+}
+
+/*
+  Styles for the list items and line divider.
+*/
+:host::ng-deep {
+  .mat-drawer-inner-container {
+    mat-list {
+      padding-top: 0 !important;
+
+      &:first-child {
+        padding-top: 8px !important;
+      }
+    }
+  }
+
+  .mat-list-item-content {
+    padding-left: 0 !important;
+    height: 37px !important;
+  }
+
+  .mat-list-item-ripple {
+    pointer-events: all !important;
+  }
+
+  .mat-divider {
+    background-color: @white;
+  }
 }
 
 .sidenav-content {
@@ -22,12 +50,37 @@
 
   .example-sidenav {
     position: fixed;
-    top: 45px;
-    height: 75%;
+    top: 50px;
+    height: 30%;
+    background-color: @breaking-bad-green;
+
+    .option-breaking-bad, .option-better-call-saul {
+      .series-logo {
+        margin-left: 5px;
+
+        .logo-image {
+          width: auto;
+          height: auto;
+
+          &.logo-breaking-bad {
+            max-width: 35px;
+          }
+
+          &.logo-better-call-saul {
+            max-width: 30px;
+          }
+        }
+      }
+
+      .series-name {
+        margin-left: 10px;
+        color: @white;
+      }
+    }
   }
 
   .hamburger-menu-icon {
-    color: @white;
+    color: @success-green;
     position: fixed;
     left: 10px;
     font-size: 2rem;

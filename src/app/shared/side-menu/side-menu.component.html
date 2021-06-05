@@ -3,8 +3,8 @@
     <mat-sidenav #sidenav
       mode="side"
       class="example-sidenav">
-      <p>Breaking Bad</p>
-      <p>Better Caul Saul</p>
+      <ng-container *ngTemplateOutlet="breakingBadListItem"></ng-container>
+      <ng-container *ngTemplateOutlet="betterCallSaulListItem"></ng-container>
     </mat-sidenav>
   
     <mat-sidenav-content>
@@ -17,3 +17,37 @@
     </mat-sidenav-content>
   </mat-sidenav-container>
 </div>
+
+<ng-template #breakingBadListItem>
+  <mat-list role="list">
+    <mat-list-item role="listItem">
+      <div class="option-breaking-bad">
+        <p>
+          <span class="series-logo">
+            <img class="logo-image logo-breaking-bad"
+              src="assets/images/logos/breaking_bad.png">
+          </span>
+          <span class="series-name">Breaking Bad</span>
+        </p>
+      </div>
+      <mat-divider></mat-divider>
+    </mat-list-item>
+  </mat-list>
+</ng-template>
+
+<ng-template #betterCallSaulListItem>
+  <mat-list role="list">
+    <mat-list-item role="listItem">
+      <div class="option-better-call-saul">
+        <p>
+          <span class="series-logo">
+            <img class="logo-image logo-better-call-saul"
+              src="assets/images/logos/better_call_saul.jpg">
+          </span>
+          <span class="series-name">Better Call Saul</span>
+        </p>
+      </div>
+      <mat-divider></mat-divider>
+    </mat-list-item>
+  </mat-list>
+</ng-template>
