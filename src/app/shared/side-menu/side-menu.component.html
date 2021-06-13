@@ -19,7 +19,9 @@
 </div>
 
 <ng-template #breakingBadListItem>
-  <mat-list role="list">
+  <mat-list role="list"
+    class="list-item"
+    (click)="onMenuItemClick('breaking-bad')">
     <mat-list-item role="listItem">
       <div class="option-breaking-bad">
         <p>
@@ -30,13 +32,15 @@
           <span class="series-name">Breaking Bad</span>
         </p>
       </div>
-      <mat-divider></mat-divider>
     </mat-list-item>
+    <mat-divider></mat-divider>
   </mat-list>
 </ng-template>
 
 <ng-template #betterCallSaulListItem>
-  <mat-list role="list">
+  <mat-list role="list"
+    class="list-item"
+    (click)="onMenuItemClick('better-call-saul')">
     <mat-list-item role="listItem">
       <div class="option-better-call-saul">
         <p>
@@ -47,7 +51,7 @@
           <span class="series-name">Better Call Saul</span>
         </p>
       </div>
-      <mat-divider></mat-divider>
     </mat-list-item>
+    <mat-divider></mat-divider>
   </mat-list>
 </ng-template>

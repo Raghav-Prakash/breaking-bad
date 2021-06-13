@@ -16,6 +16,14 @@ const routes: Routes = [
       { path: 'deaths', component: DeathsComponent },
     ]
   },
+  {
+    path: 'better-call-saul',
+    component: CharactersComponent,
+    children: [
+      { path: 'characters', component: CharactersComponent },
+      { path: 'quotes', component: QuotesComponent },
+    ]
+  },
   { path: '', redirectTo: '/breaking-bad', pathMatch: 'full' },
   { path: '**', redirectTo: '/breaking-bad' },
 ];

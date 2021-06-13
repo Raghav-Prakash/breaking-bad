@@ -2,11 +2,12 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Subscription, BehaviorSubject } from 'rxjs';
 import { switchMap } from 'rxjs/operators';
 import { combineQueries } from '@datorama/akita';
+import { Router, NavigationEnd } from '@angular/router';
 
 import { Character } from 'models/character';
 import { CharactersService } from 'services/characters.service';
 import { CharactersQuery } from 'store/characters/characters.query';
-
+import { breakingBadUrlRegex, betterCallSaulUrlRegex } from 'app/constants';
 @Component({
   selector: 'characters',
   templateUrl: './characters.component.html',
@@ -40,21 +41,44 @@ export class CharactersComponent implements OnInit, OnDestroy {
   private subscription: Subscription = new Subscription();
 
   constructor(
+    private router: Router,
     private service: CharactersService,
     private query: CharactersQuery
   ) {}
 
   ngOnInit() {
     this.subscription.add(this.queryLoadingAndErrorStates());
-    this.subscription.add(this.queryCharactersAndCountForPage(this.maxCharactersPerPage));
 
-    if (!this.characters.length) {
-      this.service.getCharacters().subscribe();
-    }
+    this.subscription.add(
+      this.router.events.subscribe(event => {
+        if (event instanceof NavigationEnd) {
+          const matchesBreakingBad = event.url.match(breakingBadUrlRegex);
+          const matchesBetterCallSaul = event.url.match(betterCallSaulUrlRegex);
+          const matches = matchesBreakingBad ? matchesBreakingBad : matchesBetterCallSaul;
+
+          if (matches[2] === 'breaking-bad') {
+            console.log('inside breaking bad')
+            this.loadBreakingBad();
+          } else {
+            console.log('inside better call saul')
+          }
+        }
+      })
+    );
   }
 
   ngOnDestroy() {
     this.subscription.unsubscribe();
+  }
+
+  /**
+   * Load the characters for the show "Breaking Bad".
+   */
+  private loadBreakingBad() {
+    this.subscription.add(this.queryCharactersAndCountForPage(this.maxCharactersPerPage));
+    if (!this.characters.length) {
+      this.subscription.add(this.service.getCharacters().subscribe());
+    }
   }
 
   /**

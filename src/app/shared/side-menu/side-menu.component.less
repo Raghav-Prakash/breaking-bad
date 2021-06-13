@@ -21,14 +21,8 @@
   Styles for the list items and line divider.
 */
 :host::ng-deep {
-  .mat-drawer-inner-container {
-    mat-list {
-      padding-top: 0 !important;
-
-      &:first-child {
-        padding-top: 8px !important;
-      }
-    }
+  .mat-list-base .mat-list-item, .mat-list-base .mat-list-option {
+    height: 35px !important;
   }
 
   .mat-list-item-content {
@@ -37,7 +31,7 @@
   }
 
   .mat-list-item-ripple {
-    pointer-events: all !important;
+    pointer-events: auto !important;
   }
 
   .mat-divider {
@@ -53,6 +47,14 @@
     top: 50px;
     height: 30%;
     background-color: @breaking-bad-green;
+
+    .list-item {
+      cursor: pointer;
+
+      &:hover {
+        background-color: @success-green;
+      }
+    }
 
     .option-breaking-bad, .option-better-call-saul {
       .series-logo {
