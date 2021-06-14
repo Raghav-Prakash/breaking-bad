@@ -17,7 +17,7 @@
   <div class="content container-fluid">
     <div *ngIf="tabPath.toLowerCase() === 'characters'"
       class="characters">
-      <characters></characters>
+      <characters [show]="show"></characters>
     </div>
     <div *ngIf="tabPath.toLowerCase() === 'quotes'"
       class="quotes">

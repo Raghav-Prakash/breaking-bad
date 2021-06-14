@@ -17,7 +17,7 @@
 <div class="navigate-pages"
   *ngIf="characters.length">
   <navigate-pages
-    [totalItemsCount]="totalCharactersBreakingBad"
+    [totalItemsCount]="totalCharacters"
     [itemsPerPageCount]="maxCharactersPerPage"
     (pageChange)="onPageChange($event)">
   </navigate-pages>

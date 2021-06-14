@@ -37,11 +37,28 @@ export class CharactersQuery extends QueryEntity<CharacterState, Character> {
   }
 
   /**
-   * Return all characters from the store who have only appeared in the show
-   * "Better Caul Saul".
+   * Returns a slice of all the characters from the store who have appeared in
+   * the show "Better Call Saul" to be displayed on a page.
+   * @param pageNumber The current page the user is in when viewing all characters.
+   * @param maxItemsPerPage The limit to the number of characters a user can
+   * see in any given page.
    */
-  selectBetterCaulSaulCharacters(): Observable<Character[]> {
-    return this.select(state => state.betterCaulSaul);
+  selectBetterCallSaulCharacters(pageNumber: number, maxItemsPerPage: number): Observable<Character[]> {
+    return this.select(state => {
+      const start = (pageNumber - 1) * maxItemsPerPage;
+      const end = (start + maxItemsPerPage) > state.betterCaulSaul.length ?
+        state.betterCaulSaul.length :
+        (start + maxItemsPerPage);
+      return state.betterCaulSaul.slice(start, end);
+    });
+  }
+
+  /**
+   * Returns the total number of characters from the store that have appeared in
+   * the show "Breaking Bad".
+   */
+   getBetterCallSaulCharacterCount(): Observable<number> {
+    return this.select(state => state.betterCaulSaul.length);
   }
 }
 
