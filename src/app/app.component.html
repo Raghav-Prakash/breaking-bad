@@ -2,42 +2,8 @@
   <img class="image" src="assets/images/background.jpg">
 </div>
 
-<div class="app container-fluid">
-  <div class="sidenav-logo-container">
-    <side-menu></side-menu>
-    <ng-container *ngTemplateOutlet="seriesLogo"></ng-container>
-  </div>
-  <div class="tab-set">
-    <tab-set
-      [tabPath]="tabPath"
-      (selectedTab)="routeToSelectedTab($event)">
-    </tab-set>
-  </div>
-
-  <div class="content container-fluid">
-    <div *ngIf="tabPath.toLowerCase() === 'characters'"
-      class="characters">
-      <characters [show]="show"></characters>
-    </div>
-    <div *ngIf="tabPath.toLowerCase() === 'quotes'"
-      class="quotes">
-      <quotes></quotes>
-    </div>
-    <div *ngIf="tabPath.toLowerCase() === 'deaths'"
-      class="deaths">
-      <deaths></deaths>
-    </div>
-  </div>
+<div class="side-menu">
+  <side-menu></side-menu>
 </div>
 
-<ng-template #seriesLogo>
-  <div class="logo">
-    <img *ngIf="show === 'breaking-bad'"
-      class="logo-breaking-bad"
-      src="assets/images/logos/breaking_bad.png">
-    <img *ngIf="show === 'better-call-saul'"
-      class="logo-better-call-saul"
-      src="assets/images/logos/better_call_saul.jpg">
-  </div>
-</ng-template>
-
+<router-outlet></router-outlet>

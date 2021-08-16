@@ -1,12 +1,3 @@
-/* Media query to check if browser is in dark mode. */
-@media (prefers-color-scheme: dark) {
-	.background-cover {
-		&.img {
-			opacity: 0.75;
-		}
-	}
-}
-
 .background-cover {
 	position: relative;
 	z-index: -1;
@@ -24,38 +15,5 @@
 		position: fixed;
 		top: 0;
 		left: 0;
-	}
-}
-
-.app {
-	padding-left: 0;
-	padding-right: 0;
-
-	.sidenav-content {
-		float: left;
-	}
-
-	.logo {
-		display: flex;
-		justify-content: center;
-
-		.logo-better-call-saul {
-			width: 17%;
-		}
-	}
-
-	.tab-set {
-		position: relative;
-  	top: 20px;
-	}
-
-	.content {
-		position: relative;
-		top: 20px;
-		
-		.characters, .quotes, .deaths {
-			position: relative;
-			top: 20px;
-		}
 	}
 }

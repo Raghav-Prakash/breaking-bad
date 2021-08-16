@@ -1,0 +1,39 @@
+<div class="app container-fluid">
+  <ng-container *ngTemplateOutlet="seriesLogo"></ng-container>
+  <ng-container *ngTemplateOutlet="tabset"></ng-container>
+
+  <div class="content container-fluid">
+    <div *ngIf="tabPath === 'characters'"
+      class="characters">
+      <characters [show]="(show| async)"></characters>
+    </div>
+    <div *ngIf="tabPath === 'quotes'"
+      class="quotes">
+      <quotes></quotes>
+    </div>
+    <div *ngIf="tabPath === 'deaths'"
+      class="deaths">
+      <deaths></deaths>
+    </div>
+  </div>
+</div>
+
+<ng-template #seriesLogo>
+  <div class="logo">
+    <img *ngIf="(show | async) === 'breaking-bad'"
+      class="logo-breaking-bad"
+      src="assets/images/logos/breaking_bad.png">
+    <img *ngIf="(show | async) === 'better-call-saul'"
+      class="logo-better-call-saul"
+      src="assets/images/logos/better_call_saul.jpg">
+  </div>
+</ng-template>
+
+<ng-template #tabset>
+  <div class="tab-set">
+    <tab-set
+      [show]="(show | async)"
+      [tabPath]="tabPath">
+    </tab-set>
+  </div>
+</ng-template>
