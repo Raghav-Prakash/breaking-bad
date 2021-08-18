@@ -104,14 +104,14 @@ export class CharactersService {
   }
 
   /**
-   * Update the store with the characters from the API that have only appeared
-   * in the show "Better Caul Saul".
+   * Update the store with the characters from the API that have appeared in the
+   * show "Better Caul Saul".
    * @param characters Characters returned by the API that includes all
    * characters that have appeared in both shows "Breaking Bad" and "Better Caul
    * Saul".
    */
   private updateStoreWithBetterCaulSaulCharacters(characters: Character[]) {
-    const storeCharacters = characters.filter(character => character.seasons.length === 0);
+    const storeCharacters = characters.filter(character => character.betterCallSaulSeasons.length > 0);
     this.store.updateBetterCaulSaulCharacters(storeCharacters);
   }
 }
