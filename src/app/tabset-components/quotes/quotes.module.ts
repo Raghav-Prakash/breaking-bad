@@ -7,6 +7,8 @@ import { ModalModule } from 'ngx-bootstrap/modal';
 // Components
 import { QuotesComponent } from 'app/tabset-components/quotes/quotes.component';
 
+// Service
+import { QuotesService } from 'app/services/quotes.service';
 @NgModule({
   declarations: [
     QuotesComponent
@@ -18,6 +20,9 @@ import { QuotesComponent } from 'app/tabset-components/quotes/quotes.component';
   ],
   exports: [
     QuotesComponent
+  ],
+  providers: [
+    QuotesService
   ],
 })
 export class QuotesModule { }

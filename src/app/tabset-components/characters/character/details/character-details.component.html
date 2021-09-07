@@ -58,7 +58,8 @@
           </ng-content>
         </td>
       </tr>
-      <tr class="betterCallSaulSeasons">
+      <tr class="betterCallSaulSeasons"
+        *ngIf="character.series === 'Breaking Bad'">
         <td>Starred in "Better Caul Saul"</td>
         <td>
           <span *ngIf="character.betterCallSaulSeasons.length > 0">Yes</span>
@@ -80,6 +81,6 @@
 <ng-template #occupations
   let-occupations="occupations">
   <span *ngFor="let occupation of occupations; let idx = index">
-    {{occupation}}<span *ngIf="idx < (character.occupations.length - 1)"><br></span>
+    {{occupation}}<span *ngIf="idx < (character.occupations.length - 1)">,<br></span>
   </span>
 </ng-template>

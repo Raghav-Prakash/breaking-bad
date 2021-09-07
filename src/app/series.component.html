@@ -9,7 +9,7 @@
     </div>
     <div *ngIf="tabPath === 'quotes'"
       class="quotes">
-      <quotes></quotes>
+      <quotes [show]="(show| async)"></quotes>
     </div>
     <div *ngIf="tabPath === 'deaths'"
       class="deaths">

@@ -6,7 +6,7 @@ import { withTransaction } from '@datorama/akita';
 import { CharactersStore } from 'store/characters/characters.store';
 import { isArray } from 'lodash';
 
-import { charactersBaseUrl } from 'app/constants';
+import { baseUrl } from 'app/constants';
 import { Character } from 'models/character';
 import { ApiCharacter } from 'services/models/character';
 
@@ -31,29 +31,20 @@ function apiCharacterToUiCharacter(apiCharacter: ApiCharacter): Character {
 
 @Injectable({ providedIn: 'root' })
 export class CharactersService {
-  /**
-   * Reference to perform HTTP requests.
-   */
-  private http: HttpClient;
-  /**
-   * Reference to the store.
-   */
-  private store: CharactersStore;
 
-  constructor(http: HttpClient, store: CharactersStore) {
-    this.http = http;
-    this.store = store;
-  }
+  constructor(
+    private http: HttpClient,
+    private store: CharactersStore
+  ) {}
 
   /**
    * Set the characters in the store. If there was an error in the API, set the
    * error state in the store.
    */
   getCharacters(): Observable<Character[]> {
-    const url = `${charactersBaseUrl}`;
     this.store.setLoading(true);
 
-    return this.http.get<ApiCharacter[]>(url)
+    return this.http.get<ApiCharacter[]>(`${baseUrl}/characters`)
       .pipe(
         map(apiCharacters => apiCharacters
           .map(character => apiCharacterToUiCharacter(character))
@@ -63,8 +54,9 @@ export class CharactersService {
           if (isArray(charactersOrError)) {
             this.onUpdateCharacterStates(charactersOrError);
           } else {
-            this.onUpdateErrorStates(charactersOrError);
+            this.store.setError(charactersOrError);
           }
+          this.store.setLoading(false);
         })
       );
   }
@@ -78,17 +70,6 @@ export class CharactersService {
   private onUpdateCharacterStates(characters: Character[]) {
     this.updateStoreWithBreakingBadCharacters(characters);
     this.updateStoreWithBetterCaulSaulCharacters(characters);
-    this.store.setLoading(false);
-  }
-
-  /**
-   * If the API call to load the characters was erroneous, update the error
-   * states in the store as well as the loading state.
-   * @param error The API error.
-   */
-  private onUpdateErrorStates(error: string) {
-    this.store.setError(error);
-    this.store.setLoading(false);
   }
 
   /**
