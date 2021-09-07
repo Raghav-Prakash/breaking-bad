@@ -8,9 +8,11 @@ import { SharedModule } from 'app/shared/shared.module';
 
 // Components
 import { CharactersComponent } from 'app/tabset-components/characters/characters.component';
+import { CharactersSearchComponent } from 'app/tabset-components/characters/search/characters-search.component';
+import { BBCharactersComponent } from 'app/tabset-components/characters/breaking-bad/bb-characters.component';
+import { BCSCharactersComponent } from 'app/tabset-components/characters/better-call-saul/bcs-characters.component';
 import { CharacterComponent } from 'app/tabset-components/characters/character/character.component';
 import { CharacterDetailsComponent } from 'app/tabset-components/characters/character/details/character-details.component';
-import { CharactersSearchComponent } from 'app/tabset-components/characters/search/characters-search.component';
 
 // Services
 import { CharactersService } from 'app/services/characters.service';
@@ -18,9 +20,11 @@ import { CharactersService } from 'app/services/characters.service';
 @NgModule({
   declarations: [
     CharactersComponent,
+    CharactersSearchComponent,
+    BBCharactersComponent,
+    BCSCharactersComponent,
     CharacterComponent,
     CharacterDetailsComponent,
-    CharactersSearchComponent
   ],
   imports: [
     BrowserModule,
@@ -31,9 +35,11 @@ import { CharactersService } from 'app/services/characters.service';
   ],
   exports: [
     CharactersComponent,
+    CharactersSearchComponent,
+    BBCharactersComponent,
+    BCSCharactersComponent,
     CharacterComponent,
     CharacterDetailsComponent,
-    CharactersSearchComponent
   ],
   providers: [
     CharactersService,
