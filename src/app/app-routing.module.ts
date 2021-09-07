@@ -3,7 +3,12 @@ import { Routes, RouterModule } from '@angular/router';
 
 // Components
 import { SeriesComponent } from 'app/series.component';
-import { CharactersComponent } from 'app/tabset-components/characters/characters.component';
+import {
+  BBCharactersComponent
+} from 'app/tabset-components/characters/breaking-bad/bb-characters.component';
+import {
+  BCSCharactersComponent
+} from 'app/tabset-components/characters/better-call-saul/bcs-characters.component';
 import { QuotesComponent } from 'app/tabset-components/quotes/quotes.component';
 import { DeathsComponent } from 'app/tabset-components/deaths/deaths.component';
 
@@ -13,7 +18,7 @@ const routes: Routes = [
     component: SeriesComponent,
     data: { show: 'breaking-bad' },
     children: [
-      { path: 'characters', component: CharactersComponent },
+      { path: 'characters', component: BBCharactersComponent },
       { path: 'quotes', component: QuotesComponent },
       { path: 'deaths', component: DeathsComponent },
     ]
@@ -23,7 +28,7 @@ const routes: Routes = [
     component: SeriesComponent,
     data: { show: 'better-call-saul' },
     children: [
-      { path: 'characters', component: CharactersComponent },
+      { path: 'characters', component: BCSCharactersComponent },
       { path: 'quotes', component: QuotesComponent },
       { path: 'deaths', component: DeathsComponent },
     ]
