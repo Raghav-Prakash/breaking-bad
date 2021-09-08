@@ -21,6 +21,8 @@ const routes: Routes = [
       { path: 'characters', component: BBCharactersComponent },
       { path: 'quotes', component: QuotesComponent },
       { path: 'deaths', component: DeathsComponent },
+      { path: '', redirectTo: '/breaking-bad/characters', pathMatch: 'full' },
+      { path: '**', redirectTo: '/breaking-bad/characters' },
     ]
   },
   {
@@ -31,10 +33,12 @@ const routes: Routes = [
       { path: 'characters', component: BCSCharactersComponent },
       { path: 'quotes', component: QuotesComponent },
       { path: 'deaths', component: DeathsComponent },
+      { path: '', redirectTo: '/better-call-saul/characters', pathMatch: 'full' },
+      { path: '**', redirectTo: '/better-call-saul/characters' },
     ]
   },
-  { path: '', redirectTo: '/breaking-bad', pathMatch: 'full' },
-  { path: '**', redirectTo: '/breaking-bad' },
+  { path: '', redirectTo: '/breaking-bad/characters', pathMatch: 'full' },
+  { path: '**', redirectTo: '/breaking-bad/characters' },
 ];
 
 @NgModule({
