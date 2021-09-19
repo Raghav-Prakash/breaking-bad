@@ -11,9 +11,13 @@ import { SeriesComponent } from 'app/series/series.component';
 import { BreakingBadModule  } from 'app/series/breaking-bad/breaking-bad-module';
 import { BetterCallSaulModule } from 'app/series/better-call-saul/better-call-saul.module';
 
+// Pipe
+import { DisplayPipe } from 'app/pipes/display.pipe';
+
 @NgModule({
   declarations: [
     SeriesComponent,
+    DisplayPipe,
   ],
   imports: [
     BrowserModule,
