@@ -18,7 +18,7 @@ export class CharactersComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit() {
-    this.subscription.add(this.service.getCharacters().subscribe());
+    // this.subscription.add(this.service.getCharacters().subscribe());
   }
 
   ngOnDestroy() {

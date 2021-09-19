@@ -9,30 +9,26 @@ import { HttpClientModule } from '@angular/common/http';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { NgModule } from '@angular/core';
 
-// Custom modules
-import { SharedModule } from 'app/shared/shared.module';
-import { TabsetComponentsModule } from 'app/tabset-components/tabset-components.module';
-
 // Components
 import { AppComponent } from 'app/app.component';
-import { SeriesComponent } from 'app/series.component';
-import { TabsetComponent } from 'app/tabset/tabset.component';
+
+// Child modules
+import { SeriesModule } from 'app/series/series.module';
+import { SharedModule } from 'app/shared/shared.module';
 
 @NgModule({
   declarations: [
     AppComponent,
-    SeriesComponent,
-    TabsetComponent,
   ],
   imports: [
     AkitaNgDevtools.forRoot(),
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    TabsetComponentsModule,
     BrowserAnimationsModule,
     MatSidenavModule,
-    SharedModule
+    SeriesModule,
+    SharedModule,
   ],
   bootstrap: [AppComponent]
 })

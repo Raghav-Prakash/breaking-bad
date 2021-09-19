@@ -6,7 +6,7 @@
         <a #charactersTab
           class="nav-link"
           [ngClass]="{ 'active': tabPath === 'characters'}"
-          routerLink="/{{show}}/characters">
+          routerLink="/series/{{show}}/characters">
           Characters
         </a>
       </li>
@@ -14,7 +14,7 @@
         <a #quotesTab
           class="nav-link"
           [ngClass]="{ 'active': tabPath === 'quotes'}"
-          routerLink="/{{show}}/quotes">
+          routerLink="/series/{{show}}/quotes">
           Quotes
         </a>
       </li>
@@ -22,7 +22,7 @@
         <a #deathsTab
           class="nav-link"
           [ngClass]="{ 'active': tabPath === 'deaths'}"
-          routerLink="/{{show}}/deaths">
+          routerLink="/series/{{show}}/deaths">
           Deaths
         </a>
       </li>

@@ -9,7 +9,6 @@ import { ModalModule } from 'ngx-bootstrap/modal';
 import { CharactersModule } from 'app/tabset-components/characters/characters.module';
 import { DeathsModule } from 'app/tabset-components/deaths/deaths.module';
 import { QuotesModule } from 'app/tabset-components/quotes/quotes.module';
-
 @NgModule({
   declarations: [
   ],
