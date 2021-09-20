@@ -1,13 +1,12 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, OnDestroy } from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
 import { Subscription } from "rxjs";
-
 @Component({
   selector: "series",
   templateUrl: "./series.component.html",
   styleUrls: ["./series.component.less"],
 })
-export class SeriesComponent implements OnInit {
+export class SeriesComponent implements OnInit, OnDestroy {
   /**
    * The name of the series as seen in the path.
    */
@@ -31,5 +30,9 @@ export class SeriesComponent implements OnInit {
         this.details = details;
       })
     );
+  }
+
+  ngOnDestroy() {
+    this.subscription.unsubscribe();
   }
 }

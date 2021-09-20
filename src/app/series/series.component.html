@@ -1,5 +1,9 @@
 <nav class="navbar navbar-expand-lg navbar-light series-navbar">
   <div class="container-fluid">
     <span class="navbar-brand series-name">{{series | display}}</span>
+    <series-selector [series]="series"
+      [details]="details">
+    </series-selector>
+    <div></div>
   </div>
 </nav>

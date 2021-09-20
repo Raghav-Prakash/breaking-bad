@@ -1,0 +1,16 @@
+<div class="btn-group" dropdown>
+  <button dropdownToggle
+    type="button"
+    class="btn dropdown-toggle series-selector"
+    aria-controls="dropdown-basic">
+    <span class="text">
+      Showing&nbsp;{{series | display}}&nbsp;{{details}} <span class="caret"></span>
+    </span>
+  </button>
+  <cdk-virtual-scroll-viewport itemSize="50"
+    *dropdownMenu
+    class="example-viewport dropdown-menu"
+    role="menu">
+    <div *cdkVirtualFor="let series of allSeries" class="example-item">{{series}}</div>
+  </cdk-virtual-scroll-viewport>
+</div>
