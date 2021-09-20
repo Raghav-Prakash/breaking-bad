@@ -3,7 +3,8 @@ import { AppRoutingModule } from 'app/app-routing.module';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
-import { ScrollingModule  } from '@angular/cdk/scrolling';
+import { ScrollingModule } from '@angular/cdk/scrolling';
+import { MatIconModule } from '@angular/material/icon';
 import { NgModule } from '@angular/core';
 
 // Components
@@ -31,6 +32,7 @@ import { DisplayPipe } from 'app/pipes/display.pipe';
     HttpClientModule,
     BsDropdownModule.forRoot(),
     ScrollingModule,
+    MatIconModule,
     BreakingBadModule,
     BetterCallSaulModule,
   ],

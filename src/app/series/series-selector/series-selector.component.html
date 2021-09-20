@@ -11,6 +11,9 @@
     *dropdownMenu
     class="example-viewport dropdown-menu"
     role="menu">
-    <div *cdkVirtualFor="let series of allSeries" class="example-item">{{series}}</div>
+    <div *cdkVirtualFor="let series of allSeries" class="example-item">
+      <span class="text">{{series}}</span>
+      <mat-icon class="arrow-right">keyboard_arrow_right</mat-icon>
+    </div>
   </cdk-virtual-scroll-viewport>
 </div>

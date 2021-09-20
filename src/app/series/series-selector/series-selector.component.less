@@ -1,6 +1,10 @@
 @import "colors";
 
 :host::ng-deep {
+  .dropdown-menu {
+    background-color: @breaking-bad-green;
+  }
+
   .dropdown-toggle::after {
     vertical-align: middle;
     color: @white;
@@ -19,7 +23,23 @@
   height: 90px;
   width: 100px;
   inset: 100% auto auto 44% !important;
+
   .example-item {
     height: 40px;
+    padding: 0 5px 0 5px;
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+
+    &:hover {
+      cursor: pointer;
+      background-color: @success-green;
+    }
+
+    .arrow-right {
+      color: @white;
+      position: relative;
+      top: 6px;
+    }
   }  
 }
