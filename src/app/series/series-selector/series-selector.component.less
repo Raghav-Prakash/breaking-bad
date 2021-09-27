@@ -1,45 +1,81 @@
 @import "colors";
 
-:host::ng-deep {
-  .dropdown-menu {
-    background-color: @breaking-bad-green;
-  }
-
-  .dropdown-toggle::after {
-    vertical-align: middle;
-    color: @white;
-  }
-}
-
-.text {
+.white-text {
   color: @white;
 }
 
-.series-selector {
-  background-color: @success-green;
+::ng-deep {
+  .cdk-overlay-container {
+    .select-dropdown {
+      transform: translate3d(5px, 40px, 10px) !important;
+
+      .mat-option:hover {
+        background-color: @success-green;
+        color: @white;
+      }
+
+      // &.slide-left {
+      //   transform: translate3d(-100%, 40px, 10px) !important;
+      //   transition: transform 3s ease-in;
+      // }
+    }
+  }
+  
+  .mat-option-text {
+    display: flex !important;
+    justify-content: space-between;
+    align-items: center;
+
+    .back-text {
+      position: relative;
+      right: 20%;
+    }
+  }
+
+  .mat-icon {
+    margin-right: 0 !important;
+  }
 }
 
-.example-viewport {
-  height: 90px;
-  width: 100px;
-  inset: 100% auto auto 44% !important;
+:host::ng-deep {
+  .mat-select-arrow, .mat-select-value-text {
+    .white-text();
+  }
 
-  .example-item {
-    height: 40px;
-    padding: 0 5px 0 5px;
-    display: flex;
-    align-items: baseline;
-    justify-content: space-between;
+  .mat-form-field-ripple {
+    background-color: @white;
+  }
 
-    &:hover {
-      cursor: pointer;
-      background-color: @success-green;
+  .mat-select-placeholder {
+    .white-text();
+  }
+
+  .mat-form-field {
+    .display {
+      display: inline-block;
+    }
+    .no-display {
+      display: none;
+      transition: transform 2s ease-out;
     }
 
-    .arrow-right {
-      color: @white;
-      position: relative;
-      top: 6px;
+    .slide-left {
+      transform: translateX(-100%);
     }
-  }  
+  }
+}
+
+.label {
+  .white-text();
+}
+
+// Animation frames
+@keyframes slideLeft {
+  from {
+    transform: translate3d(100%, 40px, 10px) !important;
+  }
+
+  to {
+    transform: translate3d(5px, 40px, 10px) !important;
+  }
 }

@@ -1,19 +1,33 @@
-<div class="btn-group" dropdown>
-  <button dropdownToggle
-    type="button"
-    class="btn dropdown-toggle series-selector"
-    aria-controls="dropdown-basic">
-    <span class="text">
-      Showing&nbsp;{{series | display}}&nbsp;{{details}} <span class="caret"></span>
-    </span>
-  </button>
-  <cdk-virtual-scroll-viewport itemSize="50"
-    *dropdownMenu
-    class="example-viewport dropdown-menu"
-    role="menu">
-    <div *cdkVirtualFor="let series of allSeries" class="example-item">
+<mat-form-field appearance="fill">
+  <mat-select #seriesSelect
+    *ngIf="!isSeriesSelected"
+    placeholder="Select series"
+    panelClass="select-dropdown"
+    [(ngModel)]="selectedSeries">
+    <mat-select-trigger>{{selectedSeries}}</mat-select-trigger>
+    <mat-option *ngFor="let series of allSeries"
+      [value]="series"
+      (click)="onSelectSeries()">
       <span class="text">{{series}}</span>
-      <mat-icon class="arrow-right">keyboard_arrow_right</mat-icon>
-    </div>
-  </cdk-virtual-scroll-viewport>
-</div>
+      <span class="icon"><mat-icon>keyboard_arrow_right</mat-icon></span>
+    </mat-option>
+  </mat-select>
+
+  <mat-select #detailsSelect
+    *ngIf="isSeriesSelected"
+    placeholder="Select details"
+    panelClass="select-dropdown"
+    [(ngModel)]="selectedDetails">
+    <mat-select-trigger>{{selectedDetails}}</mat-select-trigger>
+    <mat-option class="back"
+      (click)="onGoingBack()">
+      <span class="icon"><mat-icon>keyboard_backspace</mat-icon></span>
+      <span class="back-text">{{selectedSeries}}</span>
+    </mat-option>
+    <mat-option *ngFor="let details of allDetails"
+      [value]="selectedDetails"
+      class="detail-option">
+      <span class="text">{{details}}</span>
+    </mat-option>
+  </mat-select>
+</mat-form-field>
