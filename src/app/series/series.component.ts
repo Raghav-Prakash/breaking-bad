@@ -1,6 +1,8 @@
 import { Component, OnInit, OnDestroy } from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
 import { Subscription } from "rxjs";
+
+import { DisplayStore } from 'store/display/display.store';
 @Component({
   selector: "series",
   templateUrl: "./series.component.html",
@@ -20,7 +22,10 @@ export class SeriesComponent implements OnInit, OnDestroy {
    */
   private subscription: Subscription = new Subscription();
 
-  constructor(private route: ActivatedRoute) {}
+  constructor(
+    private route: ActivatedRoute,
+    private displayStore: DisplayStore
+  ) {}
 
   ngOnInit() {
     this.subscription.add(
@@ -28,6 +33,7 @@ export class SeriesComponent implements OnInit, OnDestroy {
         const { series, details } = params;
         this.series = series ? series : 'unknown';
         this.details = details;
+        this.displayStore.setDisplayState(series, details);
       })
     );
   }

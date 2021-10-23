@@ -13,7 +13,7 @@ export function createInitialState(): DisplayState {
 }
 
 @Injectable({ providedIn: 'root' })
-@StoreConfig({ name: 'display' })
+@StoreConfig({ name: 'View' })
 export class DisplayStore extends EntityStore<DisplayState> {
 
   constructor() {
