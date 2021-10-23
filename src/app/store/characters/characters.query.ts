@@ -1,8 +1,7 @@
 import { Injectable } from '@angular/core';
 import { QueryEntity } from '@datorama/akita';
-import { CharacterState, CharactersStore } from './characters.store';
 import { Observable } from 'rxjs';
-import { Character } from 'app/models/character';
+import { CharacterState, CharactersStore, Character } from '../index';
 
 @Injectable({ providedIn: 'root' })
 export class CharactersQuery extends QueryEntity<CharacterState, Character> {

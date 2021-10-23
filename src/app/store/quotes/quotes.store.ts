@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import { Quote } from 'app/models/quote';
 import { EntityStore, EntityState, StoreConfig } from '@datorama/akita';
+import { Quote } from '../index';
 
 export interface QuoteState extends EntityState<Quote[]> {
   breakingBad: Quote[];
